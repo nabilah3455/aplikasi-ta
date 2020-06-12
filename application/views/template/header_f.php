@@ -29,7 +29,7 @@
     <?php } ?>
     <ul class="main-menu">
         <li><a href="<?= base_url('konsumen'); ?>">Home</a></li>
-        <li><a href="<?= base_url('konsumen/pesanan'); ?>">Riwayat Pesanan</a></li>
+        <li><a href="<?= base_url('konsumen/pesanan'); ?>">History</a></li>
         <!-- <li><a href="#">Pages</a>
             <ul class="sub-menu">
                 <li><a href="category.html">Category</a></li>

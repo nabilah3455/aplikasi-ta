@@ -124,7 +124,7 @@
     </div>
     <div class="col-lg-3 col-sm-6">
         <div class="card gradient-9 panel">
-            <h4>Belum Diambil</h4>
+            <h4>Siap Diambil</h4>
             <div class="angka">
                 {belum_diambil}
                 {total}
@@ -209,7 +209,7 @@
                                         <thead>
                                             <tr class="text-center">
                                                 <th width="45%">Jenis barang</th>
-                                                <th>Laundry</th>
+                                                <th>Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>

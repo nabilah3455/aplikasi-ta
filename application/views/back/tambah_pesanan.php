@@ -36,13 +36,11 @@
                         <div class="col-lg-4" style="padding-top: 1rem;">
                             <label>Telephone</label>
                         </div>
-                        <div class="col-lg-7">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">+62</div>
-                                </div>
+                        <div class="col-lg-5">
                                 <input type="text" class="form-control" name="tlp" placeholder="nomor telephone" maxlength="12">
-                            </div>
+                        </div>
+                        <div class="col-lg-3.5">
+                                <a href="" class="btn btn-primary">Cari</a>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 1rem;">

@@ -16,10 +16,11 @@ class Barang extends MY_Controller
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user'] = $this->db->get_where('data_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data = array(
-            'nama' => $data['user']['nama'],
+            'nama' => $data['user']['nama_admin'],
             'foto' => $data['user']['foto'],
+            // 'judul' => $judul,
             'title' => 'Retail Barang Outdoor',
             'judul' => 'Data Barang',
             'menu' => 'Data Barang',
@@ -34,9 +35,9 @@ class Barang extends MY_Controller
 
     public function tambah()
     {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user'] = $this->db->get_where('data_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data = array(
-            'nama' => $data['user']['nama'],
+            'nama' => $data['user']['nama_admin'],
             'foto' => $data['user']['foto'],
             'title' => 'Retail Barang Outdoor',
             'judul' => 'Tambah Data Barang',
@@ -51,9 +52,9 @@ class Barang extends MY_Controller
     {
        // $upload_image = $_FILES['image']['name'];
         $id = $this->input->get('kode_barang');
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user'] = $this->db->get_where('data_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data = array(
-            'nama' => $data['user']['nama'],
+            'nama' => $data['user']['nama_admin'],
             'foto' => $data['user']['foto'],
             'title' => 'Retail Barang Outdoor',
             'judul' => 'Edit Data Barang',
@@ -67,29 +68,11 @@ class Barang extends MY_Controller
 
     public function insert()
     {
-        $upload_image = $_FILES['image']['name'];
-
-        if ('$upload_image') {
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2048';
-            $config['upload_path'] = './assets/images/barang/';
-
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('image')) {
-                $new_image = $this->upload->data('file_name');
-                $this->db->set('gambar', $new_image);
-            } else {
-                echo $this->upload->display_errors();
-            }
-        }
-
         $data = array(
-           'kode_barang' => $this->input->post('kode_barang'),
-           'nama_barang' => $this->input->post('nama_barang'),
-           'harga' => $this->input->post('harga'),
-           'stok' => $this->input->post('stok'),
-           'deskripsi' => $this->input->post('deskripsi')
+            'kode_barang' => $this->input->post('kode_barang'),
+            'nama_barang' => $this->input->post('nama_barang'),
+            'hrg_laundry' => $this->input->post('harga_laundry'),
+            'hrg_dryclean' => $this->input->post('harga_dry')
         );
 
         $this->modbarang->insert_barang($data);
@@ -99,30 +82,12 @@ class Barang extends MY_Controller
 
     public function update()
     {
-        $upload_image = $_FILES['image']['name'];
-
-        if ('$upload_image') {
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2048';
-            $config['upload_path'] = './assets/images/barang/';
-
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('image')) {
-                $new_image = $this->upload->data('file_name');
-                $this->db->set('gambar', $new_image);
-            } else {
-                echo $this->upload->display_errors();
-            }
-        }
-
         $id = $this->input->post('kode_barang');
         $data = array(
             'kode_barang' => $this->input->post('kode_barang'),
             'nama_barang' => $this->input->post('nama_barang'),
-            'harga' => $this->input->post('harga'),
-            'stok' => $this->input->post('stok'),
-            'deskripsi' => $this->input->post('deskripsi')
+            'hrg_laundry' => $this->input->post('harga_laundry'),
+            'hrg_dryclean' => $this->input->post('harga_dry')
         );
 
         $this->modbarang->update_barang($data, $id);
@@ -140,10 +105,4 @@ class Barang extends MY_Controller
             redirect('barang', 'refresh');
         
     }
-
-    public function segitiga()
-    {
-        $this->load->view('segitiga');
-    }
-
 }

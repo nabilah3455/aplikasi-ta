@@ -44,6 +44,11 @@
                     <li><a href="<?= base_url('pesanan/selesai '); ?>"><i class="fa fa-file"></i>Selesai</a></li>
                 </ul>
             </li>
+            <li>
+                <a class="" href="<?php echo base_url('barang'); ?>" aria-expanded="false">
+                    <i class="fa fa-list"></i><span class="nav-text">List Barang Laundry</span>
+                </a>
+            </li>
             <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-book"></i> <span class="nav-text">Laporan</span>
