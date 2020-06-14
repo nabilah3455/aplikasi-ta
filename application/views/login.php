@@ -47,7 +47,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="store">
-                                <b>Pelayanan Laundry Prima Lestari</b>
+                                <b>Laundry dan Dry Clean</b>
                             </div>
                             <?= $this->session->flashdata('message'); ?>
                             <form class="login-input" action="<?= base_url('login'); ?>" method="POST">

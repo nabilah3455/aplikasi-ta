@@ -73,7 +73,7 @@ class Modpesanan extends CI_Model
     function get_kwitansi($id)
     {
         $q = $this->db->query("
-            SELECT @no:=@no+1 as nomor, p.no_seri as seri, p.nama_konsumen as nama, j.nama_barang as jenis, IF(p.no_telepon != NULL, p.no_telepon, '-') as tlp, p.jml_barang as jml, k.alamat as alamat, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as tgl_selesai, IF(tgl_selesai != NULL, p.tgl_selesai, '-') as selesai
+            SELECT @no:=@no+1 as nomor, p.no_seri as seri, p.nama_konsumen as nama, j.nama_barang as jenis, IF(p.no_telepon = NULL, '-', p.no_telepon) as tlp, p.jml_barang as jml, k.alamat as alamat, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as tgl_selesai, IF(tgl_selesai != NULL, p.tgl_selesai, '-') as selesai
             FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor  
             WHERE p.jenis_barang=j.kode_barang AND p.no_seri='$id' GROUP BY p.no_seri
         ");

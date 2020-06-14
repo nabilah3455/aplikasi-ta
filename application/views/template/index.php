@@ -13,6 +13,7 @@
     <link href="<?= base_url('assets/'); ?>css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/chartist/css/chartist.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <link href="<?= base_url('assets/'); ?>plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
     <link href='https://fonts.googleapis.com/css' rel='stylesheet'>
 

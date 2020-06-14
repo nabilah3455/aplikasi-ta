@@ -113,7 +113,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-9 panel">
+        <div class="card gradient-1 panel">
             <h4>Dicuci</h4>
             <div class="angka">
                 {cuci}
@@ -123,7 +123,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-9 panel">
+        <div class="card gradient-1 panel">
             <h4>Siap Diambil</h4>
             <div class="angka">
                 {belum_diambil}
@@ -133,7 +133,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-9 panel">
+        <div class="card gradient-1 panel">
             <h4>Harus Diantar</h4>
             <div class="angka">
                 {antar}

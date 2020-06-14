@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    <a href="<?= base_url('pesanan/antrian')?>" class="btn btn-success col-lg-12">Selesai</a>
+    <a href="<?= base_url('pesanan/antrian')?>" class="btn btn-success col-lg-12">Masuk Ke dalam Antrian</a>
 
     <!-- Modal -->
     <div class="bootstrap-modal">

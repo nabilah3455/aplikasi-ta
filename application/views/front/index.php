@@ -1,6 +1,6 @@
     <style>
         .hs-item {
-            background-image: url('assets/images/big/laundry.jpg');
+            background-image: url('assets/images/big/dry.jpg');
             background-size: 100%;
         }
 
@@ -15,7 +15,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Login</h5>
+                        <!-- <h5 class="modal-title"></h5> -->
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
@@ -42,18 +42,18 @@
             <div class="hs-item">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="hs-text">
-                                <h2><span>Music</span> for everyone.</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+                                <h2><span>Cari Pesananmu</span></h2>
+                                <p style="color: black;">Lihat Riwayat dan Status Pesananmu Disini</p>
                                 <a href="#" class="site-btn sb-c2" data-toggle="modal" data-target="#basicModal">Cari Pesanan</a>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <!-- <div class="col-lg-6">
                             <div class="hr-img">
                                 <!-- <img src="<?= base_url('assets'); ?>/front/img/hero-bg.png" alt=""> -->
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

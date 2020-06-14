@@ -12,19 +12,47 @@ class Pesanan extends MY_Controller
 
         $this->load->model('modpesanan');
         $this->load->model('modbarang');
+        $this->load->model('modkonsumen');
     }
     
     public function index()
     {
+        if ($this->input->post('cari')) {
+            $konsumen = $this->input->post('no_tlp');
+        } else {
+            $konsumen = null;
+        }
+
+        $kode_seri = $this->modkonsumen->no_seri();
+        // $seri = $kode_seri['kode'];
+        // mengambil angka dari kode barang terbesar, menggunakan fungsi substr
+        // dan diubah ke integer dengan (int)
+        $urutan = (int) substr($kode_seri, 3, 3);
+
+        // bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
+        $urutan++;
+
+        // membentuk kode barang baru
+        // perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
+        // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
+        // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
+        $huruf = "LD";
+        $kodeseri = $huruf . sprintf("%04s", $urutan);
+        // echo $kodeseri;
+
         $data['user'] = $this->db->get_where('data_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data = array(
             'judul' => 'Data Konsumen',
             'nama' => $data['user']['nama_admin'],
             'foto' => $data['user']['foto'],
-            'tambah' => base_url('pesanan/tambah'),
             'barang' => $this->modbarang->get_barang(),
-        );
+            'konsumen' => $this->modkonsumen->get_data_konsumen($konsumen),
+            'tanggal'=>  $this->modkonsumen->tanggal(),
+            'no_seri' => $kodeseri
 
+        );
+        // var_dump($data['no_seri']);
+        // die();
         $this->template->back('back/tambah_pesanan', $data);
     }
 

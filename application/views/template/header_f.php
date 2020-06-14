@@ -39,7 +39,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </li> -->
-        <li><a href="<?= base_url('konsumen/kontak') ?>">Contact</a></li>
+        <!-- <li><a href="<?= base_url('konsumen/kontak') ?>">Contact</a></li> -->
     </ul>
 </header>
 <!-- Header section end -->

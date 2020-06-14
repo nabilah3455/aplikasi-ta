@@ -18,7 +18,7 @@ class Modkonsumen extends CI_Model
     function get_konsumen($id)
     {
         $q = $this->db->query("
-            SELECT p.nama_konsumen, p.no_seri, IF(k.no_tlp != 'NULL', no_tlp,'-') as no_tlp, k.alamat, COUNT(p.jml_barang) as total
+            SELECT p.nama_konsumen, p.no_seri, IF(k.no_tlp = NULL, '-', k.no_tlp) as no_tlp, k.alamat, COUNT(p.jml_barang) as total
             FROM pesanan p, data_konsumen k
             WHERE p.nama_konsumen=k.nama_konsumen AND (p.no_seri LIKE'$id' OR k.no_tlp LIKE '$id')
             ");
@@ -81,6 +81,31 @@ class Modkonsumen extends CI_Model
         } else {
             return NULL;
         }
+    }
+   
+    function get_data_konsumen($kode)
+    {
+        $q = $this->db->query("SELECT * FROM data_konsumen WHERE no_tlp='$kode'");
+
+        if ($q->result_array() != 0) {
+            return $q->result_array();
+        } else {
+            return NULL;
+        }
+    }
+
+    function tanggal()
+    {
+        $q = $this->db->query("SELECT max(no_seri) as kode, CURRENT_DATE() as tanggal FROM pesanan");
+
+        return $q->result_array();
+    }
+   
+    function no_seri()
+    {
+        $q = $this->db->query("SELECT max(no_seri) as kode FROM pesanan");
+
+        return $q->row()->kode;
     }
 
     function data_komplain($id)

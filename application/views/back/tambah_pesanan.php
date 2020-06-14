@@ -6,6 +6,11 @@
     .menu {
         float: right;
     }
+
+    .cari {
+        color: blue;
+        text-decoration: underline;
+    }
 </style>
 <div class="row">
     <div class="col-6">
@@ -21,56 +26,101 @@
                             <label>Nomor Seri</label>
                         </div>
                         <div class="col-lg-7">
-                            <input type="text" class="form-control" name="no_seri" placeholder="Nomor Seri" required>
+                            <input type="text" class="form-control" name="no_seri" value="<?= $no_seri ?>" placeholder="Nomor Seri" readonly>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 1rem;">
                         <div class="col-lg-4" style="padding-top: 1rem;">
                             <label>Tanggal Masuk</label>
                         </div>
+                        <?php foreach($tanggal as $k){?>
                         <div class="col-lg-7">
-                            <input type="date" class="form-control" name="masuk" required>
+                            <input type="date" class="form-control" name="masuk" value="<?= $k['tanggal'] ?>" required>
                         </div>
+                        <?php } ?>
                     </div>
-                    <div class="row" style="padding-top: 1rem;">
-                        <div class="col-lg-4" style="padding-top: 1rem;">
-                            <label>Telephone</label>
+                    <?php if ($konsumen == null) { ?>
+                        <div class="row" style="padding-top: 1rem;">
+                            <div class="col-lg-4" style="padding-top: 1rem;">
+                                <label>Telephone</label>
+                            </div>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" name="tlp" placeholder="nomor telepon" maxlength="12">
+                                <a href="#" class="cari" data-toggle="modal" data-target="#cari_konsumen">Cari Konsumen</a>
+                            </div>
                         </div>
-                        <div class="col-lg-5">
-                                <input type="text" class="form-control" name="tlp" placeholder="nomor telephone" maxlength="12">
+                        <div class="row" style="padding-top: 1rem;">
+                            <div class="col-lg-4" style="padding-top: 1rem;">
+                                <label>Nama Konsumen</label>
+                            </div>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" name="nama_konsumen" placeholder="Nama Konsumen" required>
+                            </div>
                         </div>
-                        <div class="col-lg-3.5">
-                                <a href="" class="btn btn-primary">Cari</a>
+                        <div class="row" style="padding-top: 1rem;">
+                            <div class="col-lg-4" style="padding-top: 1rem;">
+                                <label>Antar Pesanan?</label>
+                            </div>
+                            <div class="col-lg-2" style="width: 5cm; padding-top: 1rem;">
+                                <input type="radio" name="antar" value="ya" required>Ya
+                            </div>
+                            <div class="col-lg-4" style="padding-top: 1rem;">
+                                <input type="radio" name="antar" value="tidak" required>Tidak
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="padding-top: 1rem;">
-                        <div class="col-lg-4" style="padding-top: 1rem;">
-                            <label>Nama Konsumen</label>
+                        <div class="row" style="padding-top: 1rem;">
+                            <div class="col-lg-4" style="padding-top: 1rem;">
+                                <label>Alamat Konsumen</label>
+                            </div>
+                            <div class="col-lg-7">
+                                <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
+                            </div>
                         </div>
-                        <div class="col-lg-7">
-                            <input type="text" class="form-control" name="nama_konsumen" placeholder="Nama Konsumen" required>
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 1rem;">
-                        <div class="col-lg-4" style="padding-top: 1rem;">
-                            <label>Antar Pesanan?</label>
-                        </div>
-                        <div class="col-lg-2" style="width: 5cm; padding-top: 1rem;">
-                            <input type="radio" name="antar" value="ya" required>Ya
-                        </div>
-                        <div class="col-lg-4" style="padding-top: 1rem;">
-                            <input type="radio" name="antar" value="tidak" required>Tidak
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 1rem;">
-                        <div class="col-lg-4" style="padding-top: 1rem;">
-                            <label>Alamat Konsumen</label>
-                        </div>
-                        <div class="col-lg-7">
-                            <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
-                        </div>
-                    </div>
+                        <?php } else {
+                        foreach ($konsumen as $i) { ?>
+
+                            <div class="row" style="padding-top: 1rem;">
+                                <div class="col-lg-4" style="padding-top: 1rem;">
+                                    <label>Telephone</label>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" name="tlp" value="<?= $i['no_tlp'] ?>" placeholder="nomor telephone" maxlength="12" readonly>
+                                    <a href="#" class="cari" data-toggle="modal" data-target="#cari_konsumen">Cari Konsumen</a>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 1rem;">
+                                <div class="col-lg-4" style="padding-top: 1rem;">
+                                    <label>Nama Konsumen</label>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" name="nama_konsumen" value="<?= $i['nama_konsumen'] ?>" placeholder="Nama Konsumen" readonly>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 1rem;">
+                                <div class="col-lg-4" style="padding-top: 1rem;">
+                                    <label>Antar Pesanan?</label>
+                                </div>
+                                <div class="col-lg-2" style="width: 5cm; padding-top: 1rem;">
+                                    <input type="radio" name="antar" value="ya" required>Ya
+                                </div>
+                                <div class="col-lg-4" style="padding-top: 1rem;">
+                                    <input type="radio" name="antar" value="tidak" required>Tidak
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 1rem;">
+                                <div class="col-lg-4" style="padding-top: 1rem;">
+                                    <label>Alamat Konsumen</label>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" name="alamat" value="<?= $i['alamat'] ?>" placeholder="Alamat" readonly>
+                                </div>
+                            </div>
+                    <?php }
+                    } ?>
             </div>
+            <!-- <div class="card-footer">
+                Sudah Pernah Mencuci Disini Sebelumnya?
+            </div> -->
         </div>
     </div>
 
@@ -127,3 +177,59 @@
     </div>
     </form>
 </div>
+
+<!-- Modal -->
+<div class="bootstrap-modal">
+    <div class="modal fade" id="cari_konsumen">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title">Cari Pesanan</h5> -->
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <form action="<?= base_url('pesanan'); ?>" method="POST">
+                        <center>
+                            <h4>Nomor Telepon Konsumen
+                        </center>
+                        <input type="text" class="form-control" placeholder="08xxxxxxxxxxx" name="no_tlp" id="no_tlp">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <input type="submit" name="cari" value="Cari Konsumen" class="btn btn-success">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal -->
+<div class="bootstrap-modal">
+    <div class="modal fade" id="basicModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cari Pesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    <form action="<?= base_url('pesanan/cari'); ?>" method="POST">
+                        <center>
+                            <h4>Masukkan Nomor Telephone atau Nomor Seri
+                        </center>
+                        <input type="text" class="form-control" placeholder="Cari Pesanan..." name="no_seri" id="no_seri">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <input type="submit" name="submit" class="btn btn-success">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
