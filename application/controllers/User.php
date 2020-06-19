@@ -49,6 +49,9 @@ class User extends MY_Controller
             'tambah' => base_url('user/tambah_admin'),
             'items' => $this->moduser->get_admin()
         );
+
+        // var_dump($data['items']);
+        // die();
         
         $this->template->back('back/data_admin', $data);
     }
@@ -72,6 +75,7 @@ class User extends MY_Controller
     {
        
         $id = $this->input->get('id');
+        $id_user = $this->input->get('user');
        $data['user'] = $this->db->get_where('data_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data = array(
             'nama' => $data['user']['nama_admin'],
@@ -80,10 +84,11 @@ class User extends MY_Controller
             'judul' => 'Edit Data Admin',
             'menu' => 'Data Admin',
             'submenu' => 'Edit Data Admin',
-            'items' => $this->moduser->data_admin($id)
+            'items' => $this->moduser->data_admin($id),
+            'id_user' => $id_user
         );
 
-        // var_dump($data['items']);
+        // var_dump($id_user);
         // die();
 
         $this->template->back('back/edit_admin', $data);
@@ -150,6 +155,7 @@ class User extends MY_Controller
         }
 
         $id = $this->input->post('id');
+        $id_user = $this->input->post('id_user');
         $data = array(
             'nama_admin' => $this->input->post('nama'),
             'jk' => $this->input->post('jk'),
@@ -173,7 +179,7 @@ class User extends MY_Controller
             );
         }
 
-        $this->moduser->update_admin($data, $id, $user);
+        $this->moduser->update_admin($data, $id, $user, $id_user);
         redirect('user/admin', 'refresh');
     }
 

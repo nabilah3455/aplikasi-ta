@@ -10,6 +10,7 @@
                         <label>Nama Lengkap</label>
                         <input type="text" class="form-control" name="nama" value="{nama}" placeholder="Nama Lengkap" required>
                         <input type="hidden" class="form-control" name="id" value="{id}" placeholder="" required>
+                        <input type="hidden" class="form-control" name="id_user" value="{id_user}" placeholder="" required>
                     </div>
                     <div class="col">
                         <label>Username</label>
@@ -18,8 +19,9 @@
                 </div>
                 <div class="row" style="padding-top: 1rem;">
                     <div class="col">
-                        <label>Password</label>
+                        <label>Password Baru</label>
                         <input type="password" class="form-control" name="password" value="" placeholder="Password" maxlength="8" >
+                        <span style="color: red; font-size: 12px;">Tidak harus diisi, hanya saat menginputkan password baru</span>
                     </div>
                     <div class="col">
                         <label>Jenis Kelamin</label><br>

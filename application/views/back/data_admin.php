@@ -43,20 +43,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {items}
-                        <tr>
-                            <td align="center">{nomor}</td>
-                            <td>{nama}</td>
-                            <td>{username}</td>
-                            <td align="center">{jk}</td>
-                            <td align="center"><img src="<?= base_url('assets'); ?>/images/profile/{foto}" alt="gambar user" width="30px"></td>
-                            <td>{no_tlp}</td>
-                            <td>{alamat}</td>
-                            <td align="center"><a href="<?= base_url('user/edit_admin'); ?>?id={id_admin}" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                                <a href="<?= base_url('user/delete_admin'); ?>?id={id_admin}" class="btn btn-danger" onclick="return confirm('Yakin Hapus Data User Ini?')"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        {/items}
+                        <?php $no = 1;
+                        foreach ($items as $i) { ?>
+                            <tr>
+                                <td align="center"><?= $no ?></td>
+                                <td><?= $i['nama'] ?></td>
+                                <td><?= $i['username'] ?></td>
+                                <td align="center"><?= $i['jk'] ?></td>
+
+                                <?php if ($i['foto'] == null) { ?>
+                                    <td align="center">Tidak Ada Foto</td>
+                                <?php } else { ?>
+                                    <td align="center"><img src="<?= base_url('assets'); ?>/images/profile/<?= $i['foto'] ?>" alt=" gambar user" width="30px"></td>
+                                <?php } ?>
+                                <td><?= $i['no_tlp'] ?></td>
+                                <td><?= $i['alamat'] ?></td>
+                                <td align="center"><a href="<?= base_url('user/edit_admin'); ?>?id=<?= $i['id_admin'] ?>&& user=<?= $i['id']?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                    <a href="<?= base_url('user/delete_admin'); ?>?id=<?= $i['id_admin'] ?>" class="btn btn-danger" onclick="return confirm('Yakin Hapus Data User Ini?')"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php $no++;
+                        } ?>
                     </tbody>
                 </table>
             </div>

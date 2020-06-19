@@ -1,0 +1,10 @@
+link pengelola : localhost/laundry
+link konsumen :  localhost/laundry/konsumen
+
+admin
+username : nabilah123
+password : 1234
+
+konsumen
+username : pakuan
+password : admin

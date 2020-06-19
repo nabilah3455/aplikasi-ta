@@ -7,9 +7,9 @@ class Moduser extends CI_Model
     function get_admin()
     {
         $q = $this->db->query("
-            SELECT @no:=@no+1 as nomor, a.id_admin, a.nama_admin as nama, u.username, u.password, a.foto, a.jk, a.no_tlp, a.alamat, DATE_FORMAT(u.create_on, '%d %M %Y') as create_on 
+            SELECT @no:=@no+1 as nomor, a.id_admin, u.id, a.nama_admin as nama, u.username, u.password, a.foto, a.jk, a.no_tlp, a.alamat, DATE_FORMAT(u.create_on, '%d %M %Y') as create_on 
             FROM data_admin a, user u ,(SELECT @no:= 0) AS nomor
-            WHERE a.nama_admin=u.nama AND a.no_tlp=u.no_tlp AND u.hak_akses='1'
+            WHERE a.nama_admin=u.nama AND u.hak_akses='1'
             ");
 
         return $q->result_array();
@@ -75,12 +75,12 @@ class Moduser extends CI_Model
         return $q;
     }
     
-    function update_admin($data, $id, $user)
+    function update_admin($data, $id, $user, $id_user)
     {
         $this->db->where('id_admin', $id);
         $q = $this->db->update('data_admin', $data);
 
-        $this->db->where('id', $id);
+        $this->db->where('id', $id_user);
         $q = $this->db->update('user', $user);
 
         return $q;
