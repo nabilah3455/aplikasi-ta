@@ -103,11 +103,11 @@ class Moddashboard extends CI_Model
     function get_terbanyak()
     {
         $q = $this->db->query("
-            SELECT SUM(p.jml_barang) as jml, j.nama_barang
-            FROM pesanan p, jenis_barang j
-            WHERE j.kode_barang=p.jenis_barang
-            GROUP by j.nama_barang
-            ORDER BY jml DESC
+          SELECT j.nama_barang, IF(p.cuci != 'laundry', SUM(p.jml_barang), '0') as dry, IF(p.cuci = 'laundry', SUM(p.jml_barang), '0') as laundry, SUM(p.jml_barang) as total , (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total
+          FROM pesanan p, jenis_barang j 
+          WHERE p.jenis_barang=j.kode_barang 
+          GROUP BY j.nama_barang 
+          ORDER BY total DESC
         ");
 
         return $q->result_array();

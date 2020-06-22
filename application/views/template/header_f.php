@@ -8,7 +8,7 @@
 <header class="header-section clearfix">
     <a href="#" class="site-logo">
         <!-- <img src="<?= base_url('assets'); ?>/front/img/logo.png" alt=""> -->
-        <h3>Laundry & DRY CLEAN</h3>
+        <h3>LAUNDRY & DRY CLEAN</h3>
     </a>
     <?php if (is_null($this->session->userdata('username'))) { ?>
         <div class="header-right">
@@ -29,7 +29,7 @@
     <?php } ?>
     <ul class="main-menu">
         <li><a href="<?= base_url('konsumen'); ?>">Home</a></li>
-        <li><a href="<?= base_url('konsumen/pesanan'); ?>">History</a></li>
+        <li><a href="<?= base_url('konsumen/pesanan'); ?>">Riwayat Pesanan</a></li>
         <!-- <li><a href="#">Pages</a>
             <ul class="sub-menu">
                 <li><a href="category.html">Category</a></li>

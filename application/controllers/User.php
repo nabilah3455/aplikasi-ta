@@ -6,9 +6,9 @@ class User extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        // if (!$this->session->userdata('username')) {
-        //     redirect('login');
-        // }
+        if (!$this->session->userdata('username')) {
+            redirect('login');
+        }
 
         $this->load->model('moduser');
         $this->load->model('modkonsumen');

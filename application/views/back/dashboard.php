@@ -196,7 +196,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Pesanan terbanyak</h4>
@@ -208,15 +208,19 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr class="text-center">
-                                                <th width="45%">Jenis barang</th>
-                                                <th>Total</th>
+                                                <th width="35%">Jenis barang</th>
+                                                <th>Laundry</th>
+                                                <th>Dry Clean</th>
+                                                <!-- <th width="20%">Total</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {terbanyak}
                                             <tr>
                                                 <td>{nama_barang}</td>
-                                                <td class="text-center">{jml}</td>
+                                                <td class="text-center">{laundry}</td>
+                                                <td class="text-center">{dry}</td>
+                                                <!-- <td class="text-center">Rp. {total}</td> -->
                                             </tr>
                                             {/terbanyak}
                                         </tbody>
@@ -229,41 +233,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">List Harga</h4>
-                <div id="activity">
-                    <div class="admin">
-                        <div class="media border-bottom-1 pt-3 pb-3">
-                            <div class="media-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th width="45%">Jenis barang</th>
-                                                <th>Laundry</th>
-                                                <th>Dry Clean</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {list}
-                                            <tr>
-                                                <td>{nama_barang}</td>
-                                                <td class="text-center">Rp. {hrg_laundry}</td>
-                                                <td class="text-center">Rp. {hrg_dryclean}</td>
-                                            </tr>
-                                            {/list}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">

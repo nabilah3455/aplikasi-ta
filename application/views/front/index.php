@@ -4,7 +4,7 @@
             background-size: 100%;
         }
 
-        .button{
+        .button {
             padding-top: 1rem;
             float: right;
         }
@@ -22,7 +22,7 @@
                     <div class="modal-body" style="color: black">
                         <form action="<?= base_url('konsumen/cari'); ?>" method="GET">
                             <center>
-                                <h5 style="padding-bottom: 2rem;">Masukkan Nomor Telephone atau Nomor Seri Pesanan</h5>
+                                <h5 style="padding-bottom: 2rem;">Masukkan Nomor Telepon atau Nomor Seri Pesanan</h5>
                             </center>
                             <input type="text" class="form-control" name="kode" id="kode" placeholder="Input Here ...">
                             <div class="button">
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Hero section -->
     <section class="hero-section">
         <div class="hero-slider owl-carousel">
@@ -52,11 +52,11 @@
                         <!-- <div class="col-lg-6">
                             <div class="hr-img">
                                 <!-- <img src="<?= base_url('assets'); ?>/front/img/hero-bg.png" alt=""> -->
-                            </div>
-                        </div> -->
                     </div>
-                </div>
+                </div> -->
             </div>
+        </div>
+        </div>
         </div>
     </section>
     <!-- Hero section end -->
@@ -67,12 +67,15 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-title">
-                        <h2>Unlimited Access to 100K tracks</h2>
+                        <img src="<?= base_url('assets/images/media/laundry.png') ?>" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
-                    <a href="#" class="site-btn">Try it now</a>
+                    <p>Bisnis Laundry dan Dry Clean ini sudah berjalan sejak tahun 2017 dan sudah menerima pesanan lebih dari 1000 pesanan.
+                        Toko Laundry ini berada di Puri Bukit Depok Jl. Menteng III Rt. 04 Rw. 10 No. 18, nomor telepon 0878 8135 6214. 
+                        Kami menerima Pesanan setiap hari dari pukul 09.00 - 21.11 WIB.
+                    </p>
+                    <!-- <a href="#" class="site-btn">Try it now</a> -->
                 </div>
             </div>
         </div>
@@ -92,7 +95,7 @@
                             <img src="<?= base_url('assets'); ?>/images/media/icons8-t-shirt-50.png" alt="" width="45">
                         </div>
                         <h4>Berikan Pakaianmu Ke Pengelola</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi-scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. </p>
+                        <p>Akan kami data pakaian kotormu sesuai dengan urutan pesanan masuk.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -100,17 +103,17 @@
                         <div class="hi-icon">
                             <img src="<?= base_url('assets'); ?>/images/media/icons8-washing-machine-64.png" alt="" width="45">
                         </div>
-                        <h4>Choose a plan</h4>
-                        <p>Donec in sodales dui, a blandit nunc. Pellen-tesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, portti-tor vitae efficitur non. </p>
+                        <h4>Kami Cuci Pakaianmu</h4>
+                        <p>Waktu yang dibutuhkan dalam mencuci pakaian sekitar 2-3 jam tergantung jenis pakaiannya. </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="how-item">
                         <div class="hi-icon">
-                            <img src="<?= base_url('assets'); ?>/front/img/icons/smartphone.png" alt="">
+                            <img src="<?= base_url('assets'); ?>/front/img/icons/smartphone.png" alt="" >
                         </div>
-                        <h4>Download Music</h4>
-                        <p>Ablandit nunc. Pellentesque id eros venenatis, sollicitudin neque sodales, vehicula nibh. Nam massa odio, porttitor vitae efficitur non, ultric-ies volutpat tellus. </p>
+                        <h4>Notifikasi Status Pesanan</h4>
+                        <p>Konsumen akan menerima notifikasi langsung ke <i>WhatsApp</i> setiap status pesanan di update dari dicuci, disetrika, siap diambil dan akan diantar. </p>
                     </div>
                 </div>
             </div>
@@ -119,7 +122,7 @@
     <!-- How section end -->
 
     <!-- Concept section -->
-    <section class="concept-section spad">
+    <!-- <section class="concept-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -158,11 +161,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Concept section end -->
 
     <!-- Subscription section -->
-    <section class="subscription-section spad">
+    <!-- <section class="subscription-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -185,11 +188,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Subscription section end -->
 
     <!-- Premium section end -->
-    <section class="premium-section spad">
+    <!-- <section class="premium-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -232,5 +235,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Premium section end -->
