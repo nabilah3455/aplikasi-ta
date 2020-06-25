@@ -38,6 +38,7 @@ class Login extends MY_Controller
                         'password' => $user['password']
                     ];
 
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Selamat Datang di Aplikasi Pelayanan dan Pengelolaan Laundry</center></div>');
                     $this->session->set_userdata($data);
                     redirect('dashboard');
                 }else{

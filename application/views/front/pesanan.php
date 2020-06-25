@@ -209,6 +209,7 @@
         </div>
     </div>
 </section>
+
 <div class="data">
     <div class="judul">
         <b>Riwayat Pesanan</b>
@@ -237,6 +238,7 @@
             {/data}
         </tr> -->
     </table>
+    <br><?= $this->session->flashdata('message'); ?>
     <div class="riwayat">
         <table class="table table-borderless">
             <thead class="text-center">
@@ -272,6 +274,7 @@
                             if ($status == '1') {
                             ?>
                                 <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                    <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
                                     <ul class="status antrian">
                                         <li class="garis">
                                             <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
@@ -310,6 +313,7 @@
                                 </div>
                             <?php } elseif ($status == '2') { ?>
                                 <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                    <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
                                     <ul class="status cuci">
                                         <li class="garis">
                                             <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
@@ -348,6 +352,7 @@
                                 </div>
                             <?php } elseif ($status == '4') { ?>
                                 <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                    <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
                                     <ul class="status setrika">
                                         <li class="garis">
                                             <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
@@ -386,6 +391,7 @@
                                 </div>
                             <?php } elseif ($status == '5') { ?>
                                 <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                    <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
                                     <ul class="status ambil">
                                         <li class="garis">
                                             <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
@@ -428,8 +434,9 @@
                                         <a href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger">Ajukan Komplain</a>
                                     <?php } else { ?>
                                         <a href="<?= base_url('login'); ?>" class="btn btn-danger">Ajukan Komplain</a>
-                                        
-                                    <?php $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Anda Harus Login Dahulu!</center></div>'); } ?>
+
+                                    <?php $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Anda Harus Login Dahulu!</center></div>');
+                                    } ?>
                                     <!-- <a href="" data-toggle="modal" data-target="#komplain" class="btn btn-danger">Ajukan Komplain</a> -->
                                     <ul class="status selesai">
                                         <li class="garis">
@@ -493,15 +500,15 @@
                 <div class="modal-body" style="color: black">
                     <div class="kop_nota">
                         <div class="row">
-                            <div class="col-lg-2">
-                                LOGO
+                            <div class="col-lg-4">
+                                <!-- LOGO -->
                             </div>
                             <div class="col-lg-8">
                                 <!-- <div class="sub1">
                                     <b>PRIMA LESTARI<br>
                                 </div> -->
                                 <div class="sub1">
-                                   <b> LAUNDRY & DRY CLEAN CLEANING SERVICE<br></b>
+                                    <b> LAUNDRY & DRY CLEAN CLEANING SERVICE<br></b>
                                 </div>
                                 Puri Bukit Depok Jl. Menteng III Rt. 04 Rw. 10 No. 18<br>
                                 Hp. 0878 8135 6214<br>

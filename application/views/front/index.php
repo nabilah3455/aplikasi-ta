@@ -122,46 +122,19 @@
     <!-- How section end -->
 
     <!-- Concept section -->
-    <!-- <section class="concept-section spad">
+    <section class="concept-section" style="padding-top: 2rem;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="section-title">
-                        <h2>Our Concept & artists</h2>
+                        <img src="<?= base_url('assets/images/media/delivery1.jpg')?>" alt="" width="370">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="concept-item">
-                        <img src="<?= base_url('assets'); ?>/front/img/concept/1.jpg" alt="">
-                        <h5>Soul Music</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="concept-item">
-                        <img src="<?= base_url('assets'); ?>/front/img/concept/2.jpg" alt="">
-                        <h5>Live Concerts</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="concept-item">
-                        <img src="<?= base_url('assets'); ?>/front/img/concept/3.jpg" alt="">
-                        <h5>Dj Sets</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="concept-item">
-                        <img src="<?= base_url('assets'); ?>/front/img/concept/4.jpg" alt="">
-                        <h5>Live Streems</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+    </section>
     <!-- Concept section end -->
 
     <!-- Subscription section -->

@@ -220,27 +220,27 @@
         <img src="<?= base_url('assets') ?>/images/media/folder.png" alt="" width="300"><br>
         <h4>Tidak Ada Data</h4>
     </div>
-<?php }else{ ?>
-<div class="pesanan">
-    <div class="judul">
-        <b>Riwayat Pesanan</b>
-    </div>
-    <hr>
-    <!-- <img src="<?= base_url('assets/'); ?>images/member/2.jpg" height="200" width="200" alt="" class="foto"> -->
-    <table style="line-height: 2;" width=100%>
-        <tr>
-            {data}
-            <th width="15%">Nama Konsumen</th>
-            <th width="1%">:</th>
-            <th width="16%">{nama_konsumen}</th>
-            <th width="8%">Telpon</th>
-            <th width="1%">:</th>
-            <th width="16%">{no_tlp}</th>
-            <th rowspan=" 2" width="6%" valign="top">Alamat</th>
-            <th rowspan="2" colspan="2" width="1%" valign="top">:</th>
-            <th rowspan="2" colspan="2" valign="top">{alamat}</th>
-            {/data}
-            <!-- </tr>
+<?php } else { ?>
+    <div class="pesanan">
+        <div class="judul">
+            <b>Riwayat Pesanan</b>
+        </div>
+        <hr>
+        <!-- <img src="<?= base_url('assets/'); ?>images/member/2.jpg" height="200" width="200" alt="" class="foto"> -->
+        <table style="line-height: 2;" width=100%>
+            <tr>
+                {data}
+                <th width="15%">Nama Konsumen</th>
+                <th width="1%">:</th>
+                <th width="16%">{nama_konsumen}</th>
+                <th width="8%">Telpon</th>
+                <th width="1%">:</th>
+                <th width="16%">{no_tlp}</th>
+                <th rowspan=" 2" width="6%" valign="top">Alamat</th>
+                <th rowspan="2" colspan="2" width="1%" valign="top">:</th>
+                <th rowspan="2" colspan="2" valign="top">{alamat}</th>
+                {/data}
+                <!-- </tr>
         <tr>
             <th>Total Pesanan</th>
             <th>:</th>
@@ -248,249 +248,253 @@
             <th>{total}</th>
             {/data}
         </tr> -->
-    </table>
-    <div class="riwayat">
-        <table class="table table-borderless">
-            <thead class="text-center">
-                <tr>
-                    <th scope="col" width="5%">No.</th>
-                    <th scope="col" width="15%">Nomor Seri</th>
-                    <th scope="col">Jenis Barang</th>
-                    <th scope="col" width="5%">Jumlah</th>
-                    <th scope="col">Total</th>
-                    <th scope="col" width="5%">Nota</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $a = 1;
-                foreach ($items as $i) { ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $a ?></th>
-                        <td class="text-center"><?= $i['no_seri'] ?></td>
-                        <td class="text-center"><?= $i['nama_barang'] ?></td>
-                        <td class=" text-center"><?= $i['jml_barang'] ?></td>
-                        <td class="text-center">Rp. <?= $i['total'] ?></td>
-                        <td class="text-center"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicModal"><i class="fa fa-file"></i></button></td>
-                        <td class="text-center"><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample<?= $i['nomor'] ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                Cek Status
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="7">
-                            <?php $status = $i['status_pesanan'];
-                            $antar = $i['antar'];
-                            if ($status == '1') {
-                            ?>
-                                <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
-                                    <ul class="status antrian">
-                                        <li class="garis">
-                                            <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-refresh steps"></i>
-                                            <p>Dalam Antrian</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Sedang Dicuci</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Disetrika</p>
-                                        </li>
-                                        <?php if ($antar == 'tidak') { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-close"></i>
-                                                <p>Bisa Diambil</p>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-close"></i>
-                                                <p>Diantar</p>
-                                            </li>
-                                        <?php } ?>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Selesai</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <?php } elseif ($status == '2') { ?>
-                                <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
-                                    <ul class="status cuci">
-                                        <li class="garis">
-                                            <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check steps"></i>
-                                            <p>Dalam Antrian</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-refresh"></i>
-                                            <p>Sedang Dicuci</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Disetrika</p>
-                                        </li>
-                                        <?php if ($antar == 'tidak') { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-close"></i>
-                                                <p>Bisa Diambil</p>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-close"></i>
-                                                <p>Diantar</p>
-                                            </li>
-                                        <?php } ?>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Selesai</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <?php } elseif ($status == '4') { ?>
-                                <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
-                                    <ul class="status setrika">
-                                        <li class="garis">
-                                            <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check steps"></i>
-                                            <p>Dalam Antrian</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check"></i>
-                                            <p>Sedang Dicuci</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-refresh"></i>
-                                            <p>Disetrika</p>
-                                        </li>
-                                        <?php if ($antar == 'tidak') { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-close"></i>
-                                                <p>Bisa Diambil</p>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-close"></i>
-                                                <p>Diantar</p>
-                                            </li>
-                                        <?php } ?>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Selesai</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <?php } elseif ($status == '5') { ?>
-                                <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
-                                    <ul class="status ambil">
-                                        <li class="garis">
-                                            <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check steps"></i>
-                                            <p>Dalam Antrian</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check"></i>
-                                            <p>Sedang Dicuci</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check"></i>
-                                            <p>Disetrika</p>
-                                        </li>
-                                        <?php if ($antar == 'tidak') { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-refresh"></i>
-                                                <p>Bisa Diambil</p>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-refresh"></i>
-                                                <p>Diantar</p>
-                                            </li>
-                                        <?php } ?>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-close"></i>
-                                            <p>Selesai</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <?php } elseif ($status == '7') { ?>
-                                <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
-                                    <?php if ($username != "") { ?>
-                                        <a href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger">Ajukan Komplain</a>
-                                    <?php } else { ?>
-                                        <a href="<?= base_url('login'); ?>" class="btn btn-danger">Ajukan Komplain</a>
-
-                                    <?php $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Anda Harus Login Dahulu!</center></div>');
-                                    } ?>
-                                    <!-- <a href="" data-toggle="modal" data-target="#komplain" class="btn btn-danger">Ajukan Komplain</a> -->
-                                    <ul class="status selesai">
-                                        <li class="garis">
-                                            <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check steps"></i>
-                                            <p>Dalam Antrian</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check"></i>
-                                            <p>Sedang Dicuci</p>
-                                        </li>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check"></i>
-                                            <p>Disetrika</p>
-                                        </li>
-                                        <?php if ($antar == 'tidak') { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-check"></i>
-                                                <p>Bisa Diambil</p>
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
-                                                <i class="fa fa-check"></i>
-                                                <p>Diantar</p>
-                                            </li>
-                                        <?php } ?>
-                                        <li>
-                                            <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
-                                            <i class="fa fa-check"></i>
-                                            <p>Selesai</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <?php } ?>
-                            <hr>
-                        </td>
-                    </tr>
-                <?php $a++;
-                } ?>
-            </tbody>
         </table>
+        <div class="riwayat">
+            <table class="table table-borderless">
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col" width="5%">No.</th>
+                        <th scope="col" width="15%">Nomor Seri</th>
+                        <th scope="col">Jenis Barang</th>
+                        <th scope="col" width="5%">Jumlah</th>
+                        <th scope="col">Total</th>
+                        <th scope="col" width="5%">Nota</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $a = 1;
+                    foreach ($items as $i) { ?>
+                        <tr>
+                            <th scope="row" class="text-center"><?= $a ?></th>
+                            <td class="text-center"><?= $i['no_seri'] ?></td>
+                            <td class="text-center"><?= $i['nama_barang'] ?></td>
+                            <td class=" text-center"><?= $i['jml_barang'] ?></td>
+                            <td class="text-center">Rp. <?= $i['total'] ?></td>
+                            <td class="text-center"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicModal"><i class="fa fa-file"></i></button></td>
+                            <td class="text-center"><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample<?= $i['nomor'] ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Cek Status
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <?php $status = $i['status_pesanan'];
+                                $antar = $i['antar'];
+                                if ($status == '1') {
+                                ?>
+                                    <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                        <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
+                                        <ul class="status antrian">
+                                            <li class="garis">
+                                                <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-refresh steps"></i>
+                                                <p>Dalam Antrian</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Sedang Dicuci</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Disetrika</p>
+                                            </li>
+                                            <?php if ($antar == 'tidak') { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-close"></i>
+                                                    <p>Bisa Diambil</p>
+                                                </li>
+                                            <?php } else { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-close"></i>
+                                                    <p>Diantar</p>
+                                                </li>
+                                            <?php } ?>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Selesai</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } elseif ($status == '2') { ?>
+                                    <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                        <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
+                                        <ul class="status cuci">
+                                            <li class="garis">
+                                                <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check steps"></i>
+                                                <p>Dalam Antrian</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-refresh"></i>
+                                                <p>Sedang Dicuci</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Disetrika</p>
+                                            </li>
+                                            <?php if ($antar == 'tidak') { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-close"></i>
+                                                    <p>Bisa Diambil</p>
+                                                </li>
+                                            <?php } else { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-close"></i>
+                                                    <p>Diantar</p>
+                                                </li>
+                                            <?php } ?>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Selesai</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } elseif ($status == '4') { ?>
+                                    <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                        <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
+                                        <ul class="status setrika">
+                                            <li class="garis">
+                                                <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check steps"></i>
+                                                <p>Dalam Antrian</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check"></i>
+                                                <p>Sedang Dicuci</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-refresh"></i>
+                                                <p>Disetrika</p>
+                                            </li>
+                                            <?php if ($antar == 'tidak') { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-close"></i>
+                                                    <p>Bisa Diambil</p>
+                                                </li>
+                                            <?php } else { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-close"></i>
+                                                    <p>Diantar</p>
+                                                </li>
+                                            <?php } ?>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Selesai</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } elseif ($status == '5') { ?>
+                                    <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                        <button class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
+                                        <ul class="status ambil">
+                                            <li class="garis">
+                                                <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check steps"></i>
+                                                <p>Dalam Antrian</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check"></i>
+                                                <p>Sedang Dicuci</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check"></i>
+                                                <p>Disetrika</p>
+                                            </li>
+                                            <?php if ($antar == 'tidak') { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-refresh"></i>
+                                                    <p>Bisa Diambil</p>
+                                                </li>
+                                            <?php } else { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-refresh"></i>
+                                                    <p>Diantar</p>
+                                                </li>
+                                            <?php } ?>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-close"></i>
+                                                <p>Selesai</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } elseif ($status == '7') { ?>
+                                    <div class="collapse" id="collapseExample<?= $i['nomor'] ?>" aria-labelledby="collapseExample<?= $i['nomor'] ?>">
+                                        <?php if ($username != "") { ?>
+                                            <a href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger">Ajukan Komplain</a>
+                                        <?php } else { ?>
+                                            <a href="<?= base_url('login'); ?>" class="btn btn-danger">Ajukan Komplain</a>
+
+                                        <?php $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Anda Harus Login Dahulu!</center></div>');
+                                        } ?>
+                                        <!-- <a href="" data-toggle="modal" data-target="#komplain" class="btn btn-danger">Ajukan Komplain</a> -->
+                                        <ul class="status selesai">
+                                            <li class="garis">
+                                                <img src="<?= base_url('assets'); ?>/images/steps/wardrobe.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check steps"></i>
+                                                <p>Dalam Antrian</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/washing-machine.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check"></i>
+                                                <p>Sedang Dicuci</p>
+                                            </li>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/laundry-service.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check"></i>
+                                                <p>Disetrika</p>
+                                            </li>
+                                            <?php if ($antar == 'tidak') { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/clean.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-check"></i>
+                                                    <p>Bisa Diambil</p>
+                                                </li>
+                                            <?php } else { ?>
+                                                <li>
+                                                    <img src="<?= base_url('assets'); ?>/images/steps/delivery.png" width="50px" class="icon"><br>
+                                                    <i class="fa fa-check"></i>
+                                                    <p>Diantar</p>
+                                                </li>
+                                            <?php } ?>
+                                            <li>
+                                                <img src="<?= base_url('assets'); ?>/images/steps/tick.png" width="50px" class="icon"><br>
+                                                <i class="fa fa-check"></i>
+                                                <p>Selesai</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php } ?>
+                                <hr>
+                            </td>
+                        </tr>
+                    <?php $a++;
+                    } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-            <?php } ?>
+<?php } ?>
 
 
 <!-- Modal -->

@@ -111,9 +111,10 @@ class Konsumen extends MY_Controller
             'tanggal' => $tanggal,
             'komplain' => $this->input->post('komplain')
         );
-        // var_dump($tlp);
+        // var_dump($no_seri);
         // die();
 
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Ajuan Komplain Berhasil dan Akan Segera Di Proses Oleh Pengelola. Terimakasih!</center></div>');
         $this->modkonsumen->input_komplain($data);
         redirect('konsumen/cari?kode='.$tlp, 'refresh');
     }

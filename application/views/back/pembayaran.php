@@ -1,10 +1,13 @@
 <style>
-    .col-lg-3{
+    .col-lg-3 {
         font-weight: 500;
     }
 </style>
 
 <div class="row">
+    <div class="col-lg-12">
+        <?= $this->session->flashdata('message'); ?>
+    </div>
     <div class="col-7">
         <h3>{judul}</h3>
         <div class="card">
@@ -15,7 +18,7 @@
                         <label>Nomor Seri</label>
                     </div>
                     <div class="col-lg-6">
-                        <label>{no_seri}</label>
+                        <label>: {no_seri}</label>
                     </div>
                 </div>
                 <div class="row" style="padding-top: 1rem;">
@@ -23,7 +26,7 @@
                         <label>Nama Konsumen</label>
                     </div>
                     <div class="col-lg-6">
-                        <label>{nama_konsumen}</label>
+                        <label>: {nama_konsumen}</label>
                     </div>
                 </div>
                 <div class="row" style="padding-top: 1rem;">
@@ -31,7 +34,7 @@
                         <label>Nomor Telephone</label>
                     </div>
                     <div class="col-lg-6">
-                        <label>{tlp}</label>
+                        <label>: {tlp}</label>
                     </div>
                 </div>
                 {/items}
@@ -41,12 +44,12 @@
                     </div>
                     <div class="col-lg-4">
                         {barang}
-                        <label>{nama_barang}</label><br>
+                        <label>: {nama_barang}</label><br>
                         {/barang}
                     </div>
                     <div class="col-lg-2">
                         {barang}
-                        <label>{jml}</label><br>
+                        <label>Total : {jml}</label><br>
                         {/barang}
                     </div>
                 </div>
@@ -56,7 +59,7 @@
                         <label>Antar Barang</label>
                     </div>
                     <div class="col-lg-2" style="width: 5cm;">
-                        <label>{antar}</label>
+                        <label>: {antar}</label>
                     </div>
                 </div>
                 <div class="row" style="padding-top: 1rem;">
@@ -64,7 +67,7 @@
                         <label>Alamat</label>
                     </div>
                     <div class="col-lg-6">
-                        <label>{alamat}</label>
+                        <label>: {alamat}</label>
                     </div>
                 </div>
                 {/items}
@@ -81,9 +84,9 @@
                 <center><label>
                         <h3><b>Total Pembayaran
                     </label><br>
-                    <label style="padding-top: 2rem; text-decoration: underline; font-size: 40px;">
+                    <label style="padding-top: 1.2rem; text-decoration: underline; font-size: 40px;">
                         {harga}
-                            Rp. {jumlah}
+                        Rp. {jumlah}
                         {/harga}
                     </label>
                     </b></h3>
@@ -95,13 +98,13 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h4 class="text-center"><b>Nota Pesanan</b></h4><br>
-                        <a href="<?= base_url('pesanan/cetak_kwitansi')?>?no_seri={seri}" class="btn btn-warning">Lihat Nota Pembayaran</a>
+                        <a href="<?= base_url('pesanan/cetak_kwitansi') ?>?no_seri={seri}" class="btn btn-warning">Lihat Nota Pembayaran</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="<?= base_url('pesanan/antrian')?>" class="btn btn-success col-lg-12">Masuk Ke dalam Antrian</a>
+    <a href="<?= base_url('pesanan/antrian') ?>" class="btn btn-success col-lg-12">Lihat Antrian</a>
 
     <!-- Modal -->
     <div class="bootstrap-modal">

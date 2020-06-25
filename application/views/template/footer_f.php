@@ -1,14 +1,14 @@
 <style>
     .toko {
         font-size: 20px;
-        color: #0a183d;
+        color: white;
         font-weight: 800;
         padding-top: 3rem;
     }
 
     .copyright {
-        /* background-color: #0a183d; */
-        background-color: white;
+        background-color: #0a183d;
+        /* background-color: white; */
     }
 </style>
 

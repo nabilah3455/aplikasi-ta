@@ -75,6 +75,9 @@
     }
 </style>
 <div class="row">
+    <div class="col-lg-12">
+        <?= $this->session->flashdata('message'); ?>
+    </div>
     <!-- Modal -->
     <div class="bootstrap-modal">
         <div class="modal fade" id="basicModal">
@@ -233,7 +236,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
@@ -264,7 +267,7 @@
                                                     <td><?= $k['komplain'] ?></td>
                                                     <td>
                                                         <a href="http://api.whatsapp.com/send?phone=62<?= $k['no_telepon']; ?>" class="btn btn-primary"><i class="fa fa-phone"></i></a>
-                                                        <a href="<?= base_url('dashboard/hapus_komplain')?>?id=<?= $k['id_komplain']?>" onclick="return confirm('Yakin Hapus Daftar Komplain Ini?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                        <a href="<?= base_url('dashboard/hapus_komplain') ?>?id=<?= $k['id_komplain'] ?>" onclick="return confirm('Yakin Hapus Daftar Komplain Ini?')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -279,65 +282,67 @@
         </div>
     </div>
 
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/charts.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
-<!-- Chart code -->
-<script>
-    am4core.ready(function() {
+    <!-- Chart code -->
+    <script>
+        am4core.ready(function() {
 
-        // Themes begin
-        am4core.useTheme(am4themes_animated);
-        // Themes end
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
 
-        var chart = am4core.create("linechart", am4charts.XYChart);
+            var chart = am4core.create("linechart", am4charts.XYChart);
 
-        var data = [];
+            var data = [];
 
-        chart.data = {linechart};
+            chart.data = {
+                linechart
+            };
 
-        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.renderer.grid.template.location = 0;
-        categoryAxis.renderer.ticks.template.disabled = true;
-        categoryAxis.renderer.line.opacity = 0;
-        categoryAxis.renderer.grid.template.disabled = true;
-        categoryAxis.renderer.minGridDistance = 40;
-        categoryAxis.dataFields.category = "year";
-        categoryAxis.startLocation = 0.4;
-        categoryAxis.endLocation = 0.6;
+            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.ticks.template.disabled = true;
+            categoryAxis.renderer.line.opacity = 0;
+            categoryAxis.renderer.grid.template.disabled = true;
+            categoryAxis.renderer.minGridDistance = 40;
+            categoryAxis.dataFields.category = "year";
+            categoryAxis.startLocation = 0.4;
+            categoryAxis.endLocation = 0.6;
 
 
-        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-        valueAxis.tooltip.disabled = true;
-        valueAxis.renderer.line.opacity = 0;
-        valueAxis.renderer.ticks.template.disabled = true;
-        valueAxis.min = 0;
+            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+            valueAxis.tooltip.disabled = true;
+            valueAxis.renderer.line.opacity = 0;
+            valueAxis.renderer.ticks.template.disabled = true;
+            valueAxis.min = 0;
 
-        var lineSeries = chart.series.push(new am4charts.LineSeries());
-        lineSeries.dataFields.categoryX = "year";
-        lineSeries.dataFields.valueY = "income";
-        lineSeries.tooltipText = "Pesanan Masuk: {valueY.value}";
-        lineSeries.fillOpacity = 0.5;
-        lineSeries.strokeWidth = 3;
-        lineSeries.propertyFields.stroke = "lineColor";
-        lineSeries.propertyFields.fill = "lineColor";
+            var lineSeries = chart.series.push(new am4charts.LineSeries());
+            lineSeries.dataFields.categoryX = "year";
+            lineSeries.dataFields.valueY = "income";
+            lineSeries.tooltipText = "Pesanan Masuk: {valueY.value}";
+            lineSeries.fillOpacity = 0.5;
+            lineSeries.strokeWidth = 3;
+            lineSeries.propertyFields.stroke = "lineColor";
+            lineSeries.propertyFields.fill = "lineColor";
 
-        var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
-        bullet.circle.radius = 6;
-        bullet.circle.fill = am4core.color("#fff");
-        bullet.circle.strokeWidth = 3;
+            var bullet = lineSeries.bullets.push(new am4charts.CircleBullet());
+            bullet.circle.radius = 6;
+            bullet.circle.fill = am4core.color("#fff");
+            bullet.circle.strokeWidth = 3;
 
-        chart.cursor = new am4charts.XYCursor();
-        chart.cursor.behavior = "panX";
-        chart.cursor.lineX.opacity = 0;
-        chart.cursor.lineY.opacity = 0;
+            chart.cursor = new am4charts.XYCursor();
+            chart.cursor.behavior = "panX";
+            chart.cursor.lineX.opacity = 0;
+            chart.cursor.lineY.opacity = 0;
 
-        chart.scrollbarX = new am4core.Scrollbar();
-        chart.scrollbarX.parent = chart.bottomAxesContainer;
+            chart.scrollbarX = new am4core.Scrollbar();
+            chart.scrollbarX.parent = chart.bottomAxesContainer;
 
-    }); // end am4core.ready()
-</script>
+        }); // end am4core.ready()
+    </script>

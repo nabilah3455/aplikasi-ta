@@ -18,6 +18,7 @@ class Dashboard extends MY_Controller
         $data = array(
             'judul' =>  'adsadd',
             'nama' => $data['user']['nama_admin'],
+            'username' => $data['user']['username'],
             'foto' => $data['user']['foto'],
             'pesanan' => $this->moddashboard->get_pesanan(),
             'pendapatan' => $this->moddashboard->get_total(),
@@ -32,9 +33,6 @@ class Dashboard extends MY_Controller
             'konsumen' => $this->moddashboard->get_konsumen(),
             'terbanyak' => $this->moddashboard->get_terbanyak()
         );
-
-        // var_dump($data['komplain']);
-        // die();
         
         $this->template->back('back/dashboard', $data);
     }

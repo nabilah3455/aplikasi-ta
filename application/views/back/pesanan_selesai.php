@@ -16,6 +16,7 @@
         font-size: 30px;
     }
 </style>
+<?= $this->session->flashdata('message'); ?>
 <div class="card">
     <div class="card-body">
         <div class="card-title">

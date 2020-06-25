@@ -7,10 +7,11 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <?= $this->session->flashdata('message'); ?>
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    Pesanan Dalam Antrian
+                    Pesanan Dicuci
                 </div>
                 <div class="table-responsive lebar" style="color: black;">
                     <table class="table table-striped table-bordered zero-configuration" style="color: black;">

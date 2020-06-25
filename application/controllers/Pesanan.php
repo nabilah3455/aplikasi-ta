@@ -195,7 +195,7 @@ class Pesanan extends MY_Controller
 
         // var_dump($data['harga']);
         // die();
-
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menambhakan Pesanan Baru. Pesanan akan masuk ke dalah daftar antrian</div>');
         $this->template->back('back/pembayaran', $data);
     }
 
@@ -321,7 +321,23 @@ class Pesanan extends MY_Controller
 
         $this->modpesanan->update_status($data, $id);
 
-        redirect('pesanan/antrian');
+        if ($data['status_pesanan'] == '1'){
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
+            redirect('pesanan/antrian');
+        }elseif($data['status_pesanan'] == '2'){
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
+            redirect('pesanan/cuci');
+        }elseif($data['status_pesanan'] == '3'){
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
+            redirect('pesanan/settrika');
+        }elseif($data['status_pesanan'] == '4'){
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
+            redirect('pesanan/ambil');
+        }else{
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
+            redirect('pesanan/selesai');
+        }
+            
     }
     
     function update_selesai()
