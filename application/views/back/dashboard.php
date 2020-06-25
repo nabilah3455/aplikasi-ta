@@ -301,9 +301,7 @@
 
             var data = [];
 
-            chart.data = {
-                linechart
-            };
+            chart.data = {linechart};
 
             var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.renderer.grid.template.location = 0;

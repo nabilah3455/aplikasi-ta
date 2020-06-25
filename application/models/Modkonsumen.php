@@ -20,7 +20,7 @@ class Modkonsumen extends CI_Model
         $q = $this->db->query("
             SELECT p.nama_konsumen, p.no_seri, IF(k.no_tlp = NULL, '-', k.no_tlp) as no_tlp, k.alamat, COUNT(p.jml_barang) as total
             FROM pesanan p, data_konsumen k
-            WHERE p.nama_konsumen=k.nama_konsumen AND (p.no_seri LIKE'$id' OR k.no_tlp LIKE '$id')
+            WHERE (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE'$id' OR k.no_tlp LIKE '$id')
             ");
 
         return $q->result_array();
@@ -31,7 +31,7 @@ class Modkonsumen extends CI_Model
         $q = $this->db->query("
             SELECT @no:=@no+1 as nomor, p.id_pesanan, p.no_seri, j.nama_barang, p.jml_barang, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.antar, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
             FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor 
-            WHERE j.kode_barang=p.jenis_barang AND p.nama_konsumen=k.nama_konsumen AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id')
+            WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id')
             GROUP BY p.id_pesanan
             ");
 
@@ -44,7 +44,7 @@ class Modkonsumen extends CI_Model
         
             SELECT @no:=@no+1 as nomor, p.no_seri, j.nama_barang, p.jml_barang, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
             FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor 
-            WHERE j.kode_barang=p.jenis_barang AND p.no_telepon=k.no_tlp AND p.no_seri LIKE'$id' OR k.no_tlp LIKE '$id'
+            WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND p.no_seri LIKE'$id' OR k.no_tlp LIKE '$id'
             GROUP BY p.id_pesanan LIMIT 1
             ");
 
@@ -113,7 +113,7 @@ class Modkonsumen extends CI_Model
         $q = $this->db->query("
             SELECT p.id_pesanan, p.no_seri, p.nama_konsumen, j.nama_barang, p.jml_barang, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.antar, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
             FROM pesanan p, jenis_barang j, data_konsumen k
-            WHERE j.kode_barang=p.jenis_barang AND p.nama_konsumen=k.nama_konsumen AND p.id_pesanan='$id' 
+            WHERE j.kode_barang=p.jenis_barang AND p.no_telepon=k.no_tlp AND p.id_pesanan='$id' 
             GROUP BY p.id_pesanan
         ");
 
