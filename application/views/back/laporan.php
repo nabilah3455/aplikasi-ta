@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    Laporan Penjualanan
+                    Laporan Pemesanan
                 </div>
                 <form action="<?= base_url('laporan/laporan'); ?>" method="POST" autocomplete="off">
                     <div class="row">

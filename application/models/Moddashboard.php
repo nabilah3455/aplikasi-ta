@@ -52,14 +52,14 @@ class Moddashboard extends CI_Model
 
     function belum_diambil()
     {
-        $q = $this->db->query("SELECT COUNT(*) as total FROM pesanan WHERE status_pesanan='5'");
+        $q = $this->db->query("SELECT COUNT(*) as total FROM pesanan WHERE antar='tidak' AND status_pesanan='5'");
 
         return $q->result_array();
     }
     
     function antar()
     {
-        $q = $this->db->query("SELECT COUNT(*) as total FROM pesanan WHERE status_pesanan='6'");
+        $q = $this->db->query("SELECT COUNT(*) as total FROM pesanan WHERE antar='ya' AND status_pesanan='5'");
 
         return $q->result_array();
     }
@@ -100,14 +100,27 @@ class Moddashboard extends CI_Model
         return $q->result_array();   
     }
 
-    function get_terbanyak()
+    function get_terbanyak_laundry()
     {
         $q = $this->db->query("
-          SELECT j.nama_barang, IF(p.cuci != 'laundry', SUM(p.jml_barang), '0') as dry, IF(p.cuci = 'laundry', SUM(p.jml_barang), '0') as laundry, SUM(p.jml_barang) as total , (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total
+          SELECT j.nama_barang as country, SUM(p.jml_barang) as visits
           FROM pesanan p, jenis_barang j 
-          WHERE p.jenis_barang=j.kode_barang 
-          GROUP BY j.nama_barang 
-          ORDER BY total DESC
+          WHERE p.jenis_barang=j.kode_barang AND p.cuci='laundry'
+          GROUP BY j.nama_barang
+          ORDER BY visits ASC
+        ");
+
+        return $q->result_array();
+    }
+    
+    function get_terbanyak_dry()
+    {
+        $q = $this->db->query("
+            SELECT j.nama_barang as country, SUM(p.jml_barang) as visits
+          FROM pesanan p, jenis_barang j 
+          WHERE p.jenis_barang=j.kode_barang AND p.cuci='dry'
+          GROUP BY j.nama_barang
+          ORDER BY visits ASC
         ");
 
         return $q->result_array();

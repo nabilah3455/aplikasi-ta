@@ -30,17 +30,43 @@ class Konsumen extends MY_Controller
         $data = array(
             'title' => 'Riwayat Pesanan',
             'username' => $data['user']['username'],
+            'no_tlp' => $data['user']['no_tlp'],
             'data' => $this->modkonsumen->get_konsumen($id),
             'items' => $this->modkonsumen->get_pesanan($id),
             'tanggal' => $this->modkonsumen->get_tanggal($id),
             'total' => $this->modkonsumen->get_total($id),
-            'kode' => $id
+            'kode' => $id,
         );
 
-        // var_dump($data['data']);
+        // var_dump($data['no_seri']);
         // die();
 
         $this->template->front('front/pesanan_kosong', $data);
+    }
+    
+    public function status_pesanan()
+    {
+        $no_seri = $this->input->get('no_seri');
+        $data['user'] = $this->db->get_where('data_konsumen', ['username' => $this->session->userdata('username')])->row_array();
+        $id = $data['user']['no_tlp'];
+
+        $data = array(
+            'title' => 'Status Pesanan',
+            'username' => $data['user']['username'],
+            'no_tlp' => $data['user']['no_tlp'],
+            'data' => $this->modkonsumen->get_konsumen($no_seri),
+            'items' => $this->modkonsumen->pesanan($no_seri),
+            'status' => $this->modkonsumen->status($no_seri),
+            'tanggal' => $this->modkonsumen->get_tanggal($no_seri),
+            'total' => $this->modkonsumen->get_total($no_seri),
+            'kode' => $no_seri,
+            'no_tlp' => $id
+        );
+
+        // var_dump($data['items']);
+        // die();
+
+        $this->template->front('front/status_pesanan', $data);
     }
     
     public function cari(){
@@ -51,6 +77,7 @@ class Konsumen extends MY_Controller
         $data = array(
             'title' => 'Riwayat Pesanan',
             'username' => $data['user']['username'],
+            'no_tlp' => $data['user']['no_tlp'],
             'data' => $this->modkonsumen->get_konsumen($id),
             'items' => $this->modkonsumen->get_pesanan($id),
             'tanggal' => $this->modkonsumen->get_tanggal($id),
@@ -58,8 +85,6 @@ class Konsumen extends MY_Controller
             'kode' => $id
         );
 
-        // var_dump($data['items']);
-        // die();
 
         $this->template->front('front/pesanan', $data);
     }

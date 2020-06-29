@@ -69,10 +69,11 @@ class Pesanan extends MY_Controller
             'barang' => $this->modbarang->get_barang(),
             // 'jml_barang' => $jml_barang,
             'items' => $this->modpesanan->tambah_pesanan($id),
-            'seri' => $id
+            'seri' => $id,
+            'pesanan' => $this->modpesanan->data_pesanan($id)
         );
 
-        // var_dump($data['items']);
+        // var_dump($data['pesanan']);
         // die();
 
         $this->template->back('back/tambah', $data);
@@ -190,12 +191,14 @@ class Pesanan extends MY_Controller
             'items' => $this->modpesanan->pembayaran($id),
             'barang' => $this->modpesanan->total_barang($id),
             'harga' => $this->modpesanan->get_total($id),
-            'seri' => $id
+            'seri' => $id,
+            'pesanan' => $this->modpesanan->data_pesanan($id),
+            'status_bayar' => $this->modpesanan->status_bayar($id), 
         );
 
-        // var_dump($data['harga']);
+        // var_dump($data['seri']);
         // die();
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menambhakan Pesanan Baru. Pesanan akan masuk ke dalah daftar antrian</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menambahkan Pesanan Baru. Pesanan akan masuk ke dalah daftar antrian</div>');
         $this->template->back('back/pembayaran', $data);
     }
 
@@ -223,7 +226,7 @@ class Pesanan extends MY_Controller
         $data['user'] = $this->db->get_where('data_admin', ['username' => $this->session->userdata('username')])->row_array();
         $data = array(
             'title' => 'Laundry',
-            'judul' => 'Pesanan Selesai',
+            'judul' => 'Riwayat Pesanan',
             'nama' => $data['user']['nama_admin'],
             'foto' => $data['user']['foto'],
             'items' => $this->modpesanan->pesanan_selesai()
@@ -252,14 +255,47 @@ class Pesanan extends MY_Controller
         $html = $this->parser->parse("back/nota_print", $data);
         $this->pdfgenerator->generate($html, "Bukti Pembayaran", true, 'A5', 'potrait');
     }
+
+    public function update_status_bayar()
+    {
+        $id = $this->input->post('no_seri');
+
+        $pesanan = array(
+            'status_bayar' => $this->input->post('bayar'),
+        );
+
+        // var_dump($id);
+        // die();
+
+        $this->modpesanan->update_pembayaran($id, $pesanan);
+        redirect('pesanan/bayar?no_seri=' . $id);
+    }
+    
+    public function pesanan_batal()
+    {
+        $id = $this->input->get('id_pesanan');
+        $tanggal=date('Y-m-d');
+
+        $pesanan = array(
+            'status_pesanan' => '6',
+            'tgl_selesai' => $tanggal
+        );
+
+        // var_dump($id);
+        // die();
+
+        $this->modpesanan->update_status_pesanan($id, $pesanan);
+        redirect('pesanan/antrian');
+    }
     
     public function cetak_kwitansi()
     {
+        $id = $this->input->get('no_seri');
+
         $this->load->library('pdfgenerator');
         $this->load->model('modpesanan');
 
-        $id = $this->input->get('no_seri');
-
+       
         $data = array(
             'title' => "Surat Informasi Marketing Aktif",
             'items' => $this->modpesanan->get_kwitansi($id),
@@ -327,10 +363,10 @@ class Pesanan extends MY_Controller
         }elseif($data['status_pesanan'] == '2'){
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
             redirect('pesanan/cuci');
-        }elseif($data['status_pesanan'] == '3'){
+        }elseif($data['status_pesanan'] == '4'){
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
             redirect('pesanan/settrika');
-        }elseif($data['status_pesanan'] == '4'){
+        }elseif($data['status_pesanan'] == '5'){
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status Pesanan Berhasil Di Update</div>');
             redirect('pesanan/ambil');
         }else{

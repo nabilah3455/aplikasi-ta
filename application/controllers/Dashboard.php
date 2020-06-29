@@ -31,8 +31,12 @@ class Dashboard extends MY_Controller
             'linechart' => json_encode($this->moddashboard->grafik()),
             'komplain' => $this->moddashboard->data_komplain(),
             'konsumen' => $this->moddashboard->get_konsumen(),
-            'terbanyak' => $this->moddashboard->get_terbanyak()
+            'terbanyak_laundry' =>json_encode( $this->moddashboard->get_terbanyak_laundry()),
+            'terbanyak_dry' =>json_encode( $this->moddashboard->get_terbanyak_dry())
         );
+
+        // var_dump($data['terbanyak_laundry']);
+        // die();
         
         $this->template->back('back/dashboard', $data);
     }

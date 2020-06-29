@@ -3,6 +3,11 @@
         color: black;
         font-size: 20px;
     }
+
+    .data {
+        overflow-x: auto;
+        /* width: 100%; */
+    }
 </style>
 
 <div class="row">
@@ -13,7 +18,8 @@
                 <div class="card-title">
                     Pesanan Dalam Antrian
                 </div>
-                <div class="table-responsive lebar" style="color: black;">
+                <div class="data">
+                <div class="table-responsive" style="color: black; width: 120%;">
                     <table class="table table-striped table-bordered zero-configuration" style="color: black;">
                         <thead>
                             <tr align="center">
@@ -22,8 +28,8 @@
                                 <th>Nama Konsumen</th>
                                 <th>Jenis Barang</th>
                                 <th width="1%">Jumlah</th>
-                                <th>Tanggal Masuk</th>
-                                <th>Aksi</th>
+                                <th width="14%">Tanggal Masuk</th>
+                                <th width="27%;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +43,7 @@
                                 <td align="center">{tgl_masuk}</td>
                                 <td align="center"><a href="<?= base_url('pesanan/edit_status'); ?>?id_pesanan={id_pesanan}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                                     <a href="http://api.whatsapp.com/send?phone=62{no_tlp}&text=Hallo%20{nama_konsumen},Pesananmu%20{nama_barang}%20dengan%20No.%20seri%20{no_seri}%20sudah%20masuk%20antrian%20cucian%20" class="btn btn-success"><i class="fa fa-whatsapp"></i></a>
+                                    <a href="<?= base_url('pesanan/pesanan_batal') ?>?id_pesanan={id_pesanan}" class="btn btn-danger">Batalkan Pesanan</a>
                                 </td>
                             </tr>
                             {/items}

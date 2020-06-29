@@ -29,10 +29,33 @@ class Modkonsumen extends CI_Model
     function get_pesanan($id)
     {
         $q = $this->db->query("
-            SELECT @no:=@no+1 as nomor, p.id_pesanan, p.no_seri, j.nama_barang, p.jml_barang, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.antar, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
+            SELECT @no:=@no+1 as nomor, p.id_pesanan, k.no_tlp, p.no_seri, j.nama_barang, SUM(p.jml_barang) as jml_barang, SUM(p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.antar, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
+            FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor 
+            WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id')
+           GROUP BY p.no_seri
+            ");
+
+        return $q->result_array();
+    }
+    
+    function pesanan($id)
+    {
+        $q = $this->db->query("
+            SELECT @no:=@no+1 as nomor, p.id_pesanan, k.no_tlp, p.no_seri, j.nama_barang, SUM(p.jml_barang) as jml_barang, SUM(p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.antar, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
             FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor 
             WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id')
             GROUP BY p.id_pesanan
+            ");
+
+        return $q->result_array();
+    }
+
+    function status($id)
+    {
+        $q = $this->db->query("
+            SELECT @no:=@no+1 as nomor, p.id_pesanan, k.no_tlp, p.no_seri, j.nama_barang, p.jml_barang, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, p.antar, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
+            FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor 
+            WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id') LIMIT 1
             ");
 
         return $q->result_array();

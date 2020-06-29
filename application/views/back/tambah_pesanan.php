@@ -24,6 +24,7 @@
                     <div class="row" style="padding-top: 1rem;">
                         <div class="col-lg-4" style="padding-top: 1rem;">
                             <label>Nomor Seri</label>
+                            <label for="" style="color: red;">*</label>
                         </div>
                         <div class="col-lg-7">
                             <input type="text" class="form-control" name="no_seri" value="<?= $no_seri ?>" placeholder="Nomor Seri" readonly>
@@ -32,6 +33,7 @@
                     <div class="row" style="padding-top: 1rem;">
                         <div class="col-lg-4" style="padding-top: 1rem;">
                             <label>Tanggal Masuk</label>
+                            <label for="" style="color: red;">*</label>
                         </div>
                         <?php foreach($tanggal as $k){?>
                         <div class="col-lg-7">
@@ -43,6 +45,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Telephone</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-7">
                                 <input type="text" class="form-control" name="tlp" placeholder="nomor telepon" maxlength="12">
@@ -52,6 +55,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Nama Konsumen</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-7">
                                 <input type="text" class="form-control" name="nama_konsumen" placeholder="Nama Konsumen" required>
@@ -60,6 +64,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Antar Pesanan?</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-2" style="width: 5cm; padding-top: 1rem;">
                                 <input type="radio" name="antar" value="ya" required>Ya
@@ -71,6 +76,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Alamat Konsumen</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-7">
                                 <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
@@ -82,6 +88,7 @@
                             <div class="row" style="padding-top: 1rem;">
                                 <div class="col-lg-4" style="padding-top: 1rem;">
                                     <label>Telephone</label>
+                                    <label for="" style="color: red;">*</label>
                                 </div>
                                 <div class="col-lg-7">
                                     <input type="text" class="form-control" name="tlp" value="<?= $i['no_tlp'] ?>" placeholder="nomor telephone" maxlength="12" readonly>
@@ -91,6 +98,7 @@
                             <div class="row" style="padding-top: 1rem;">
                                 <div class="col-lg-4" style="padding-top: 1rem;">
                                     <label>Nama Konsumen</label>
+                                    <label for="" style="color: red;">*</label>
                                 </div>
                                 <div class="col-lg-7">
                                     <input type="text" class="form-control" name="nama_konsumen" value="<?= $i['nama_konsumen'] ?>" placeholder="Nama Konsumen" readonly>
@@ -99,6 +107,7 @@
                             <div class="row" style="padding-top: 1rem;">
                                 <div class="col-lg-4" style="padding-top: 1rem;">
                                     <label>Antar Pesanan?</label>
+                                    <label for="" style="color: red;">*</label>
                                 </div>
                                 <div class="col-lg-2" style="width: 5cm; padding-top: 1rem;">
                                     <input type="radio" name="antar" value="ya" required>Ya
@@ -110,6 +119,7 @@
                             <div class="row" style="padding-top: 1rem;">
                                 <div class="col-lg-4" style="padding-top: 1rem;">
                                     <label>Alamat Konsumen</label>
+                                    <label for="" style="color: red;">*</label>
                                 </div>
                                 <div class="col-lg-7">
                                     <input type="text" class="form-control" name="alamat" value="<?= $i['alamat'] ?>" placeholder="Alamat" readonly>

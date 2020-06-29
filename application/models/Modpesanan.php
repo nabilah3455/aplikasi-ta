@@ -27,9 +27,9 @@ class Modpesanan extends CI_Model
     function pesanan_selesai()
     {
         $q = $this->db->query("
-            SELECT @no:=@no+1 as nomor, p.no_seri as no_seri, p.id_pesanan as id, p.nama_konsumen as nama, j.nama_barang as jenis, p.jml_barang as jml, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as masuk, IF(p.tgl_selesai != NULL, p.tgl_selesai, '-') as tglselesai, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as selesai
-            FROM pesanan p, jenis_barang j, (SELECT @no:= 0) AS nomor 
-            WHERE p.jenis_barang=j.kode_barang AND p.status_pesanan='7'
+            SELECT @no:=@no+1 as nomor, p.no_seri as no_seri, p.id_pesanan as id, p.nama_konsumen as nama, j.nama_barang as jenis, p.jml_barang as jml, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as masuk, IF(p.tgl_selesai != NULL, p.tgl_selesai, '-') as tglselesai, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as selesai, s.nama_status
+            FROM pesanan p, jenis_barang j, status s ,(SELECT @no:= 0) AS nomor 
+            WHERE p.jenis_barang=j.kode_barang AND p.status_pesanan=s.id_status AND p.status_pesanan >'5'
             ORDER BY p.tgl_masuk DESC
         ");
 
@@ -268,6 +268,40 @@ class Modpesanan extends CI_Model
         $q = $this->db->update('pesanan', $data);
 
         return $q;
+    }
+    
+    function update_pembayaran($id, $pesanan)
+    {
+        $this->db->where('no_seri', $id);
+        $q = $this->db->update('pesanan', $pesanan);
+
+        return $q;
+    }
+   
+    function update_status_pesanan($id, $pesanan)
+    {
+        $this->db->where('id_pesanan', $id);
+        $q = $this->db->update('pesanan', $pesanan);
+
+        return $q;
+    }
+
+    function data_pesanan($id)
+    {
+        $q = $this->db->query("
+           SELECT p.* , IF(p.cuci = 'dry', 'Dry Clean', 'Laundry') as cuci, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, j.nama_barang
+           FROM pesanan p, jenis_barang j
+           WHERE j.kode_barang=p.jenis_barang AND p.no_seri='$id'
+            ");
+
+        return $q->result_array();
+    }
+    
+    function status_bayar($id)
+    {
+        $q = $this->db->query("SELECT status_bayar FROM pesanan WHERE no_seri='$id' LIMIT 1");
+
+        return $q->result_array();
     }
     
 }

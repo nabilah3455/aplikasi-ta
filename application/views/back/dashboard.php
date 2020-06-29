@@ -22,8 +22,8 @@
         height: 25rem;
     }
 
-    #chartdiv {
-        height: 350px;
+    #chartdiv, #dry {
+        height: 700px;
     }
 
     #linechart {
@@ -199,36 +199,32 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Pesanan terbanyak</h4>
+                <h4 class="card-title">Pesanan Laundry</h4>
                 <div id="activity">
                     <div class="admin">
                         <div class="media border-bottom-1 pt-3 pb-3">
                             <div class="media-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th width="35%">Jenis barang</th>
-                                                <th>Laundry</th>
-                                                <th>Dry Clean</th>
-                                                <!-- <th width="20%">Total</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {terbanyak}
-                                            <tr>
-                                                <td>{nama_barang}</td>
-                                                <td class="text-center">{laundry}</td>
-                                                <td class="text-center">{dry}</td>
-                                                <!-- <td class="text-center">Rp. {total}</td> -->
-                                            </tr>
-                                            {/terbanyak}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <div id="chartdiv"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Pesanan Dry Clean</h4>
+                <div id="activity">
+                    <div class="admin">
+                        <div class="media border-bottom-1 pt-3 pb-3">
+                            <div class="media-body">
+                                <div id="dry"></div>
                             </div>
                         </div>
                     </div>
@@ -285,9 +281,9 @@
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <!-- <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script> -->
 
     <!-- Chart code -->
     <script>
@@ -343,4 +339,78 @@
             chart.scrollbarX.parent = chart.bottomAxesContainer;
 
         }); // end am4core.ready()
+    </script>
+    <script>
+        am4core.useTheme(am4themes_animated);
+
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+
+        chart.colors.saturation = 0.4;
+
+        chart.data = {terbanyak_laundry};
+
+
+        var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.dataFields.category = "country";
+        categoryAxis.renderer.minGridDistance = 20;
+
+        var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.maxLabelPosition = 0.98;
+
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.categoryY = "country";
+        series.dataFields.valueX = "visits";
+        series.tooltipText = "{valueX.value}";
+        series.sequencedInterpolation = true;
+        series.defaultState.transitionDuration = 1000;
+        series.sequencedInterpolationDelay = 100;
+        series.columns.template.strokeOpacity = 0;
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "panY";
+
+
+        // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+        series.columns.template.adapter.add("fill", function(fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+        });
+    </script>
+    <script>
+        am4core.useTheme(am4themes_animated);
+
+        var chart = am4core.create("dry", am4charts.XYChart);
+
+
+        chart.colors.saturation = 0.4;
+
+        chart.data = {terbanyak_dry};
+
+
+        var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.dataFields.category = "country";
+        categoryAxis.renderer.minGridDistance = 20;
+
+        var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.maxLabelPosition = 0.98;
+
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.categoryY = "country";
+        series.dataFields.valueX = "visits";
+        series.tooltipText = "{valueX.value}";
+        series.sequencedInterpolation = true;
+        series.defaultState.transitionDuration = 1000;
+        series.sequencedInterpolationDelay = 100;
+        series.columns.template.strokeOpacity = 0;
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.behavior = "panY";
+
+
+        // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+        series.columns.template.adapter.add("fill", function(fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+        });
     </script>

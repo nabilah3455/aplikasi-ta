@@ -20,6 +20,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Nomor Seri</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" name="no_seri" value="<?= $i['no_seri'] ?>" placeholder="Nomor Seri" readonly>
@@ -28,6 +29,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Tanggal Masuk</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-6">
                                 <input type="date" class="form-control" name="masuk" value="<?= $i['masuk'] ?>" readonly>
@@ -36,19 +38,16 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Telephone</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-6">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">+62</div>
-                                    </div>
-                                    <input type="text" class="form-control" name="tlp" value="<?= $i['tlp'] ?>" placeholder="nomor telephone" maxlength="12" readonly>
-                                </div>
+                                <input type="text" class="form-control" name="tlp" value="<?= $i['tlp'] ?>" placeholder="nomor telephone" maxlength="12" readonly>
                             </div>
                         </div>
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Nama Konsumen</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" name="nama_konsumen" value="<?= $i['nama_konsumen'] ?>" placeholder="Nama Konsumen" required>
@@ -57,6 +56,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Antar Pesanan?</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" name="antar" value="<?= $i['antar'] ?>" placeholder="Nama Konsumen" readonly>
@@ -65,6 +65,7 @@
                         <div class="row" style="padding-top: 1rem;">
                             <div class="col-lg-4" style="padding-top: 1rem;">
                                 <label>Alamat Konsumen</label>
+                                <label for="" style="color: red;">*</label>
                             </div>
                             <div class="col-lg-6">
                                 <input type="text" class="form-control" name="alamat" value="<?= $i['alamat'] ?>" placeholder="Alamat" readonly>
@@ -126,4 +127,39 @@
         </div>
     </div>
     </form>
-</div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    List Pesanan
+                </div>
+                <div class="table-responsive" style="color: black;">
+                    <table class="table table-striped table-bordered zero-configuration" style="color: black;" width="140%">
+                        <thead>
+                            <tr align="center">
+                                <th width="1px">No.</th>
+                                <th width="30px">Nomor Seri</th>
+                                <th width=500px>Jenis Barang</th>
+                                <th width="1px">Jumlah</th>
+                                <th width=10px>Cuci</th>
+                                <th width="20px">Harga</th>
+                            </tr>
+                            <tbody>
+                                <?php $no=1; foreach($pesanan as $p){?>
+                                <tr>
+                                    <td align="center"><?= $no ?></td>
+                                    <td><?= $p['no_seri'] ?></td>
+                                    <td><?= $p['nama_barang'] ?></td>
+                                    <td align="center"><?= $p['jml_barang'] ?></td>
+                                    <td><?= $p['cuci'] ?></td>
+                                    <td align="center">Rp. <?= $p['total'] ?></td>
+                                </tr>
+                                <?php $no++; } ?>
+                            </tbody>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
