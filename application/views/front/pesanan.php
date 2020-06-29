@@ -270,6 +270,10 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#akses">Lihat Status Pesanan</button>
                             <?php } elseif ($username != '' && $no_tlp != $i['no_tlp']) { ?>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#akses">Lihat Status Pesanan</button>
+                            <?php } elseif($username != '' && $no_tlp == $i['no_tlp']) { ?>
+                                <a class="btn btn-primary" href="<?= base_url('konsumen/status_pesanan') ?>?no_seri=<?= $i['no_seri'] ?>">
+                                    Lihat Status Pesanan
+                                </a>
                             <?php } ?>
                         </td>
                 </tr>
@@ -442,9 +446,7 @@
                                     <a href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger">Ajukan Komplain</a>
                                 <?php } else { ?>
                                     <a href="<?= base_url('login'); ?>" class="btn btn-danger">Ajukan Komplain</a>
-
-                                <?php $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Anda Harus Login Dahulu!</center></div>');
-                                } ?>
+                                <?php } ?>
                                 <!-- <a href="" data-toggle="modal" data-target="#komplain" class="btn btn-danger">Ajukan Komplain</a> -->
                                 <ul class="status selesai">
                                     <li class="garis">

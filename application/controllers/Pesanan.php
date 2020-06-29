@@ -325,6 +325,7 @@ class Pesanan extends MY_Controller
             'jml_barang' => $this->input->post('jml_barang'),
             'cuci' => $this->input->post('cuci'),
             'tgl_masuk' => $this->input->post('masuk'),
+            'berat' => $this->input->post('berat'),
             'status_pesanan' => '1'
         );
 
@@ -383,6 +384,7 @@ class Pesanan extends MY_Controller
 
         $data = array(
             'status_pesanan' => '7',
+            'status_pembayaran' => 'Lunas',
             'tgl_selesai' => $tanggal
         );
 

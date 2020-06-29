@@ -29,8 +29,8 @@
 
     .pesanan {
         margin: 4rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 1px;
+        padding-right: 1px;
     }
 
     /* .riwayat {
@@ -467,12 +467,12 @@
             <thead class="text-center">
                 <tr>
                     <th scope="col" width="5%">No.</th>
-                    <th scope="col" width="15%">Nomor Seri</th>
+                    <th scope="col" width="10%">Nomor Seri</th>
                     <th scope="col">Jenis Barang</th>
-                    <th scope="col" width="5%">Total</th>
-                    <th scope="col" width="15%">Tanggal Masuk</th>
-                    <th scope="col" width="15%">Tanggal Selesai</th>
-                    <th scope="col">Jumlah</th>
+                    <th scope="col" width="5%">Jumlah</th>
+                    <th scope="col" width="10%">Berat (Kg)</th>
+                    <th scope="col">Total Harga</th>
+                    <th scope="col">Keterangan</th>
                     <th scope="col">Komplain</th>
                 </tr>
             </thead>
@@ -482,11 +482,11 @@
                     foreach ($items as $i) { ?>
                         <th scope="row" class="text-center"><?= $a ?></th>
                         <td class="text-center"><?= $i['no_seri'] ?></td>
-                        <td class="text-center"><?= $i['nama_barang'] ?></td>
+                        <td class="text-left"><?= $i['nama_barang'] ?></td>
                         <td class=" text-center"><?= $i['jml_barang'] ?></td>
-                        <td class=" text-center"><?= $i['tgl_masuk'] ?></td>
-                        <td class=" text-center"><?= $i['tgl_selesai'] ?></td>
+                        <td class=" text-center"><?= $i['berat'] ?></td>
                         <td class="text-center">Rp. <?= $i['total'] ?></td>
+                        <td class="text-center"><?= $i['cuci'] ?></td>
                         <td class="text-center">
                             <?php if ($i['status_pesanan'] == '6') { ?>
                                 <button href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>

@@ -76,7 +76,10 @@
                         <tr valign="top">
                             <td style="padding-left: 4px;">Alamat</td>
                             <td>:</td>
-                            <td colspan="4" style="padding-bottom: 1rem;">{alamat}</td>
+                            <td style="padding-bottom: 1rem;">{alamat}</td>
+                            <td>Pembayaran</td>
+                            <td>:</td>
+                            <td><b>{status_bayar}</b></td>
                             {/items}
                         </tr>
                     </table>

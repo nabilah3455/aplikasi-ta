@@ -51,10 +51,11 @@
                                 <td><?= $i['masuk'] ?></td>
                                 <td><?= $i['selesai'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('pesanan/cetak_nota'); ?>?no_seri={no_seri}" type="button" class="btn btn-primary"><i class="fa fa-file"></i></a>
+                                    <a href="<?= base_url('pesanan/cetak_nota'); ?>?no_seri=<?= $i['no_seri'] ?>" type="button" class="btn btn-primary"><i class="fa fa-file"></i></a>
                                 </td>
                             </tr>
-                        <?php $no++; } ?>
+                        <?php $no++;
+                        } ?>
                     </tbody>
                 </table>
             </div>

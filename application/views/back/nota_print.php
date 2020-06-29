@@ -76,7 +76,10 @@
                         <tr>
                             <td style="padding-left: 4px;">Alamat</td>
                             <td>:</td>
-                            <td colspan="4"><?= $i['alamat'] ?></td>
+                            <td><?= $i['alamat'] ?></td>
+                            <td>Pembayaran</td>
+                            <td>:</td>
+                            <td><b><?= $i['status_bayar']?></b></td>
                         </tr>
                     <?php } ?>
                 </table>

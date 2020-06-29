@@ -35,10 +35,10 @@
                             <label>Tanggal Masuk</label>
                             <label for="" style="color: red;">*</label>
                         </div>
-                        <?php foreach($tanggal as $k){?>
-                        <div class="col-lg-7">
-                            <input type="date" class="form-control" name="masuk" value="<?= $k['tanggal'] ?>" required>
-                        </div>
+                        <?php foreach ($tanggal as $k) { ?>
+                            <div class="col-lg-7">
+                                <input type="date" class="form-control" name="masuk" value="<?= $k['tanggal'] ?>" required>
+                            </div>
                         <?php } ?>
                     </div>
                     <?php if ($konsumen == null) { ?>
@@ -143,6 +143,7 @@
                 <div class="row" style="padding-top: 1rem;">
                     <div class="col-lg-4" style="padding-top: 1rem;">
                         <label>Jenis Barang</label>
+                        <label for="" style="color: red;">*</label>
                     </div>
                     <div class="col-lg-7">
                         <select class="form-control" name="jenis" required>
@@ -156,24 +157,38 @@
                 <div class="row" style="padding-top: 1rem;">
                     <div class="col-lg-4" style="padding-top: 1rem;">
                         <label>Jumlah Barang</label>
+                        <label for="" style="color: red;">*</label>
                     </div>
                     <div class="col-lg-7">
                         <input type="number" name="jml_barang" placeholder="0" class="form-control" style="width: 40%;" required>
                     </div>
                 </div>
                 <div class="row" style="padding-top: 1rem;">
-                    <div class="col-lg-4" style="padding-top: 1rem;">
+                    <div class="col-lg-2" style="padding-top: 1rem;">
                         <label>Cuci</label>
+                        <label for="" style="color: red;">*</label>
                     </div>
-                    <div class="col-lg-7" style="width: 5cm; padding-top: 1rem;">
+                    <div class="col-lg-10" style=" padding-top: 1rem;">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <input type="radio" name="cuci" value="laundry" class="form"> Laundry
+                            <div class="col-lg-4">
+                                <input type="radio" name="cuci" value="laundry" class="form"> <b>Laundry</b>
                             </div>
-                            <div class="col-lg-6">
-                                <input type="radio" name="cuci" value="dry"> Dry Clean
+                            <div class="col-lg-4">
+                                <input type="radio" name="cuci" value="dry"> <b> Dry Clean</b>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="radio" name="cuci" value="kiloan"> <b> Kiloan</b>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 1rem;">
+                    <div class="col-lg-4" style="padding-top: 1rem;">
+                        <label>Berat Barang (Kg)</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="number" name="berat" placeholder="0" class="form-control" style="width: 40%;">
+                        <label for="" style="color: red; font-size: 12px;">Diisi Apabila Memilih Cuci Kiloan</label>
                     </div>
                 </div>
                 <hr>
@@ -187,6 +202,7 @@
     </div>
     </form>
 </div>
+
 
 <!-- Modal -->
 <div class="bootstrap-modal">

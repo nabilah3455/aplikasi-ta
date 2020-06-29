@@ -84,7 +84,7 @@
                                     <tr align="center">
                                         <th width="1px">No.</th>
                                         <th width="80px">Nomor Seri</th>
-                                        <th width="150px">Jenis Barang</th>
+                                        <th width="100px">Jenis Barang</th>
                                         <th width="1px">Jumlah</th>
                                         <th width="80px">Cuci</th>
                                         <th width="20px">Total</th>

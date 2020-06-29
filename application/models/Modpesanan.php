@@ -73,7 +73,7 @@ class Modpesanan extends CI_Model
     function get_kwitansi($id)
     {
         $q = $this->db->query("
-            SELECT @no:=@no+1 as nomor, p.no_seri as seri, p.nama_konsumen as nama, j.nama_barang as jenis, IF(p.no_telepon = NULL, '-', p.no_telepon) as tlp, p.jml_barang as jml, k.alamat as alamat, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as tgl_selesai, IF(tgl_selesai != NULL, p.tgl_selesai, '-') as selesai
+            SELECT @no:=@no+1 as nomor, p.no_seri as seri, p.nama_konsumen as nama, p.status_bayar, j.nama_barang as jenis, IF(p.no_telepon = NULL, '-', p.no_telepon) as tlp, p.jml_barang as jml, k.alamat as alamat, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as tgl_selesai, IF(tgl_selesai != NULL, p.tgl_selesai, '-') as selesai
             FROM pesanan p, jenis_barang j, data_konsumen k, (SELECT @no:= 0) AS nomor  
             WHERE p.jenis_barang=j.kode_barang AND p.no_seri='$id' GROUP BY p.no_seri
         ");
@@ -289,7 +289,16 @@ class Modpesanan extends CI_Model
     function data_pesanan($id)
     {
         $q = $this->db->query("
-           SELECT p.* , IF(p.cuci = 'dry', 'Dry Clean', 'Laundry') as cuci, (p.jml_barang* IF(p.cuci='laundry', j.hrg_laundry, j.hrg_dryclean)) as total, j.nama_barang
+           SELECT p.* , (p.jml_barang*  CASE
+                WHEN p.cuci = 'laundry' THEN j.hrg_laundry
+                WHEN p.cuci = 'dry' THEN j.hrg_dryclean
+                WHEN p.cuci = 'kiloan' THEN j.hrg_kiloan
+            END) as total, j.nama_barang,
+           CASE
+                WHEN p.cuci = 'laundry' THEN 'Laundry'
+                WHEN p.cuci = 'dry' THEN 'Dry Clean'
+                WHEN p.cuci = 'kiloan' THEN 'Kiloan'
+            END as cuci
            FROM pesanan p, jenis_barang j
            WHERE j.kode_barang=p.jenis_barang AND p.no_seri='$id'
             ");

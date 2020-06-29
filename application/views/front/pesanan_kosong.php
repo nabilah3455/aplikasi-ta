@@ -447,8 +447,7 @@
                                     <?php } else { ?>
                                         <a href="<?= base_url('login'); ?>" class="btn btn-danger">Ajukan Komplain</a>
 
-                                    <?php $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><center>Anda Harus Login Dahulu!</center></div>');
-                                    } ?>
+                                    <?php } ?>
                                     <!-- <a href="" data-toggle="modal" data-target="#komplain" class="btn btn-danger">Ajukan Komplain</a> -->
                                     <ul class="status selesai">
                                         <li class="garis">

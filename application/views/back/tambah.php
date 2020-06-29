@@ -104,18 +104,31 @@
                     </div>
                 </div>
                 <div class="row" style="padding-top: 1rem;">
-                    <div class="col-lg-4" style="padding-top: 1rem;">
+                    <div class="col-lg-2" style="padding-top: 1rem;">
                         <label>Cuci</label>
+                        <label for="" style="color: red;">*</label>
                     </div>
-                    <div class="col-lg-7" style="width: 5cm; padding-top: 1rem;">
+                    <div class="col-lg-10" style=" padding-top: 1rem;">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <input type="radio" name="cuci" value="laundry" class="form"> Laundry
+                            <div class="col-lg-4">
+                                <input type="radio" name="cuci" value="laundry" class="form"> <b>Laundry</b>
                             </div>
-                            <div class="col-lg-6">
-                                <input type="radio" name="cuci" value="dry"> Dry Clean
+                            <div class="col-lg-4">
+                                <input type="radio" name="cuci" value="dry"> <b> Dry Clean</b>
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="radio" name="cuci" value="kiloan"> <b> Kiloan</b>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-top: 1rem;">
+                    <div class="col-lg-4" style="padding-top: 1rem;">
+                        <label>Berat Barang (Kg)</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="number" name="berat" placeholder="0" class="form-control" style="width: 35%;">
+                        <label for="" style="color: red; font-size: 12px;">Diisi Apabila Memilih Cuci Kiloan</label>
                     </div>
                 </div>
                 <hr>
@@ -135,28 +148,32 @@
                     List Pesanan
                 </div>
                 <div class="table-responsive" style="color: black;">
-                    <table class="table table-striped table-bordered zero-configuration" style="color: black;" width="140%">
+                    <table class="table table-striped table-bordered zero-configuration" style="color: black;">
                         <thead>
                             <tr align="center">
                                 <th width="1px">No.</th>
                                 <th width="30px">Nomor Seri</th>
-                                <th width=500px>Jenis Barang</th>
+                                <th width=50px>Jenis Barang</th>
                                 <th width="1px">Jumlah</th>
-                                <th width=10px>Cuci</th>
+                                <th width="10px">Cuci</th>
+                                <th width="10px">Berat</th>
                                 <th width="20px">Harga</th>
                             </tr>
-                            <tbody>
-                                <?php $no=1; foreach($pesanan as $p){?>
+                        <tbody>
+                            <?php $no = 1;
+                            foreach ($pesanan as $p) { ?>
                                 <tr>
                                     <td align="center"><?= $no ?></td>
                                     <td><?= $p['no_seri'] ?></td>
                                     <td><?= $p['nama_barang'] ?></td>
                                     <td align="center"><?= $p['jml_barang'] ?></td>
                                     <td><?= $p['cuci'] ?></td>
+                                    <td align="center"><?= $p['berat'] ?> Kg</td>
                                     <td align="center">Rp. <?= $p['total'] ?></td>
                                 </tr>
-                                <?php $no++; } ?>
-                            </tbody>
+                            <?php $no++;
+                            } ?>
+                        </tbody>
                         </thead>
                     </table>
                 </div>
