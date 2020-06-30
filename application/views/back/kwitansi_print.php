@@ -92,24 +92,31 @@
                         </tr>
                     </table>
                     <table border="1" width="100%" style="border-collapse: collapse;">
-
                         <tr align="center" class="total">
+                            <td width="1%">No</td>
                             <td>Jenis Barang</td>
                             <td width="15%">Jumlah</td>
+                            <td width="15%">Berat</td>
                             <td>Total Harga</td>
                         </tr>
-                        {barang}
-                        <tr>
-                            <td>{jenis}</td>
-                            <td align="center">{jml}</td>
-                            <td align="right">Rp. {total}</td>
-                        </tr>
-                        {/barang}
+                        <?php $no = 1;
+                        foreach ($barang as $b) {?>
+                                <tr>
+                                    <td align="center"><?= $no ?></td>
+                                    <td><?= $b['jenis'] ?></td>
+                                    <td align="center"><?= $b['jml'] ?></td>
+                                    <td align="center"><?= $b['berat'] ?></td>
+                                    <td align="right">Rp. <?= $b['total'] ?></td>
+                                </tr>
+                        <?php 
+                            $no++;
+                        } ?>
                         <tr class="total" align="center">
                             <?php foreach ($total as $t) { ?>
-                                <td colspan="1">TOTAL</td>
+                                <td colspan="2">TOTAL</td>
                                 <td><?= $t['jml'] ?></td>
-                                <td align="right">Rp. <?= $t['jumlah'] ?></td>
+                                <td><?= $t['berat'] ?></td>
+                                <td>Rp. <?= $t['jumlah'] ?></td>
                             <?php } ?>
                         </tr>
                     </table>

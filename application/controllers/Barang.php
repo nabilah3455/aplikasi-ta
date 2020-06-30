@@ -27,7 +27,7 @@ class Barang extends MY_Controller
             'submenu' => '',
             'tambah' => base_url('barang/tambah'),
             'items' => $this->modbarang->get_barang(),
-           // 'edit' => base_url('barang/edit')
+            'kiloan' => $this->modbarang->get_kiloan()
         );
 
         $this->template->back('back/data_barang', $data);

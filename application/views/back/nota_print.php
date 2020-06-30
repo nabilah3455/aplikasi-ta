@@ -79,7 +79,7 @@
                             <td><?= $i['alamat'] ?></td>
                             <td>Pembayaran</td>
                             <td>:</td>
-                            <td><b><?= $i['status_bayar']?></b></td>
+                            <td><b><?= $i['status_bayar'] ?></b></td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -96,6 +96,7 @@
                         <td width=2%>No</td>
                         <td>Jenis Barang</td>
                         <td width="15%">Jumlah</td>
+                        <td width="15%">Berat</td>
                         <td>Total Harga</td>
                     </tr>
                     <?php $a = 1;
@@ -104,6 +105,7 @@
                             <td align="center"><?php echo $a; ?></td>
                             <td><?= $i['nama_barang'] ?></td>
                             <td align="center"><?= $i['jml_barang'] ?></td>
+                            <td align="center"><?= $i['berat'] ?> Kg</td>
                             <td align="right">Rp. <?= $i['total'] ?></td>
                         </tr>
                     <?php $a++;
@@ -112,6 +114,7 @@
                         <?php foreach ($total as $t) { ?>
                             <td colspan="2">TOTAL</td>
                             <td><?= $t['jml'] ?></td>
+                            <td><?= $t['berat'] ?> Kg</td>
                             <td>Rp. <?= $t['jumlah'] ?></td>
                         <?php } ?>
                     </tr>

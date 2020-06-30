@@ -41,7 +41,7 @@
                     <li><a href="<?= base_url('pesanan/cuci'); ?>"><i class="fa fa-file"></i>Dicuci</a></li>
                     <li><a href="<?= base_url('pesanan/setrika '); ?>"><i class="fa fa-file"></i>Di Setrika</a></li>
                     <li><a href="<?= base_url('pesanan/ambil'); ?>"><i class="fa fa-file"></i>Bisa diambil/Diantar</a></li>
-                    <li><a href="<?= base_url('pesanan/selesai '); ?>"><i class="fa fa-file"></i>Selesai</a></li>
+                    <li><a href="<?= base_url('pesanan/selesai '); ?>"><i class="fa fa-file"></i>Riwayat Pesanan</a></li>
                 </ul>
             </li>
             <li>

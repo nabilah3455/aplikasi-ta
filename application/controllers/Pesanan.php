@@ -384,7 +384,7 @@ class Pesanan extends MY_Controller
 
         $data = array(
             'status_pesanan' => '7',
-            'status_pembayaran' => 'Lunas',
+            'status_bayar' => 'Lunas',
             'tgl_selesai' => $tanggal
         );
 

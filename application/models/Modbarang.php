@@ -6,7 +6,14 @@ class Modbarang extends CI_Model
 {
     function get_barang()
     {
-        $q = $this->db->query("SELECT * FROM jenis_barang");
+        $q = $this->db->query("SELECT * FROM jenis_barang ORDER BY nama_barang");
+
+        return $q->result_array();
+    }
+    
+    function get_kiloan()
+    {
+        $q = $this->db->query("SELECT * FROM jenis_barang WHERE kode_barang='78'");
 
         return $q->result_array();
     }

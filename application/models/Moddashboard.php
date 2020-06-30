@@ -14,7 +14,13 @@ class Moddashboard extends CI_Model
     function get_total()
     {
         $q = $this->db->query("
-            SELECT SUM(p.jml_barang* IF(p.cuci = 'laundry', j.hrg_laundry, j.hrg_dryclean)) as total 
+            SELECT SUM(
+                CASE
+                WHEN p.cuci = 'laundry' THEN p.jml_barang*j.hrg_laundry
+                WHEN p.cuci = 'dry' THEN p.jml_barang*j.hrg_dryclean
+                WHEN p.cuci = 'kiloan' THEN p.berat*j.hrg_laundry
+            END
+            ) as total 
             FROM jenis_barang j, pesanan p 
             WHERE p.jenis_barang=j.kode_barang
             ");
