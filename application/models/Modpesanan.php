@@ -135,7 +135,7 @@ class Modpesanan extends CI_Model
                 WHEN p.cuci = 'kiloan' THEN p.berat*j.hrg_laundry
             END as total, p.tgl_masuk as masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') as tgl_selesai, IF(tgl_selesai != NULL, p.tgl_selesai, '-') as selesai, s.nama_status as status
             FROM pesanan p, jenis_barang j, status s, (SELECT @no:= 0) AS nomor  
-            WHERE p.jenis_barang=j.kode_barang AND s.id_status=p.status_pesanan AND  p.no_seri='$id' OR p.no_telepon LIKE '%$id%'
+            WHERE p.jenis_barang=j.kode_barang AND s.id_status=p.status_pesanan AND  (p.no_seri='$id' OR p.no_telepon LIKE '$id')
             ");
 
         return $q->result_array();
@@ -213,7 +213,13 @@ class Modpesanan extends CI_Model
     function get_total($id)
     {
         $q = $this->db->query("
-            SELECT SUM(p.jml_barang) as jml, SUM(p.jml_barang* IF(p.cuci = 'laundry', j.hrg_laundry, j.hrg_dryclean)) as jumlah, SUM(p.berat) as berat 
+            SELECT SUM(p.jml_barang) as jml, SUM(
+                 CASE
+                WHEN p.cuci = 'laundry' THEN p.jml_barang*j.hrg_laundry
+                WHEN p.cuci = 'dry' THEN p.jml_barang*j.hrg_dryclean
+                WHEN p.cuci = 'kiloan' THEN p.berat*j.hrg_laundry
+            END
+            ) as jumlah, SUM(p.berat) as berat 
             FROM jenis_barang j, pesanan p 
             WHERE p.jenis_barang=j.kode_barang AND (p.no_seri='$id' OR p.no_telepon LIKE '$id')
             ");

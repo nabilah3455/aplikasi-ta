@@ -71,7 +71,7 @@
                         <th width="1%">Jumlah</th>
                         <th width="11%">Harga</th>
                         <th width="13%">Tanggal Masuk</th>
-                        <th width="13%">Tanggal Keluar</th>
+                        <th width="13%">Tanggal Selesai</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -86,7 +86,13 @@
                             <td class="text-center">Rp. <?= $i['total']; ?></td>
                             <td class="text-center"><?= $i['masuk']; ?></td>
                             <td class="text-center"><?= $i['selesai']; ?></td>
-                            <td class="text-center"><?= $i['status']; ?></td>
+                            <td class="text-center">
+                                <?php if ($i['status'] == 'Di Batalkan') { ?>
+                                    <span class="badge badge-danger"><?= $i['status']; ?></span>
+                                <?php } else { ?>
+                                        <span class="badge badge-success"><?= $i['status']; ?></span>
+                                <?php } ?>
+                            </td>
                             <td>
                                 <?php
                                 if ($i['status'] != "selesai") { ?>

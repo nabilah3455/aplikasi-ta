@@ -44,6 +44,24 @@ class Modkonsumen extends CI_Model
         return $q->result_array();
     }
     
+    function data_pesanan($id)
+    {
+        $q = $this->db->query("
+            SELECT p.id_pesanan, k.no_tlp, p.no_seri, j.nama_barang, SUM(p.jml_barang) as jml_barang, SUM(
+            CASE
+                WHEN p.cuci = 'laundry' THEN p.jml_barang*j.hrg_laundry
+                WHEN p.cuci = 'dry' THEN p.jml_barang*j.hrg_dryclean
+                WHEN p.cuci = 'kiloan' THEN p.berat*j.hrg_laundry
+            END
+            ) as total, p.antar, p.berat, p.status_pesanan, DATE_FORMAT(p.tgl_masuk, '%d %M %Y') as tgl_masuk, DATE_FORMAT(p.tgl_selesai, '%d %M %Y') tgl_selesai
+            FROM pesanan p, jenis_barang j, data_konsumen k
+            WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id')
+            GROUP BY p.no_seri
+            ");
+
+        return $q->result_array();
+    }
+    
     function pesanan($id)
     {
         $q = $this->db->query("
@@ -63,6 +81,13 @@ class Modkonsumen extends CI_Model
             WHERE j.kode_barang=p.jenis_barang AND (p.no_telepon=k.no_tlp OR p.nama_konsumen=k.nama_konsumen) AND (p.no_seri LIKE '$id' OR p.no_telepon LIKE '$id')
             GROUP BY p.id_pesanan
             ");
+
+        return $q->result_array();
+    }
+    
+    function status_pesanan($id)
+    {
+        $q = $this->db->query("SELECT status_pesanan FROM pesanan WHERE (no_seri LIKE '$id' OR no_telepon LIKE '$id') LIMIT 1");
 
         return $q->result_array();
     }

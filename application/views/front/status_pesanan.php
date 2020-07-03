@@ -488,7 +488,7 @@
                         <td class="text-center">Rp. <?= $i['total'] ?></td>
                         <td class="text-center"><?= $i['cuci'] ?></td>
                         <td class="text-center">
-                            <?php if ($i['status_pesanan'] == '6') { ?>
+                            <?php if ($i['status_pesanan'] != '7') { ?>
                                 <button href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger" disabled="disabled">Ajukan Komplain</button>
                             <?php } else { ?>
                                 <a href="<?= base_url('konsumen/komplain'); ?>?id_pesanan=<?= $i['id_pesanan'] ?>" class="btn btn-danger">Ajukan Komplain</a>
@@ -516,9 +516,9 @@
                 <div class="modal-body" style="color: black">
                     <div class="kop_nota">
                         <div class="row">
-                            <div class="col-lg-2">
-                                LOGO
-                            </div>
+                            <!-- <div class="col-lg-2">
+                                
+                            </div> -->
                             <div class="col-lg-8">
                                 <div class="sub1">
                                     <b> LAUNDRY & DRY CLEAN CLEANING SERVICE<br></b>
@@ -550,7 +550,10 @@
                                 <tr>
                                     <td style="padding-left: 4px;">Alamat</td>
                                     <td>:</td>
-                                    <td colspan="4"><?= $i['alamat'] ?></td>
+                                    <td><?= $i['alamat'] ?></td>
+                                    <td>Pembayaran</td>
+                                    <td>:</td>
+                                    <td><?= $i['status_bayar'] ?></td>
                                 </tr>
                             <?php } ?>
                         </table>
@@ -589,6 +592,11 @@
                                 <?php } ?>
                             </tr>
                         </table>
+                        <?php 
+                            if ($status_pesanan == '6') {
+                                echo "<b>Catatan :</b> Pesanan Dibatalkan";
+                            }
+                         ?>
                         <b class="ttd">Hormat Kami,</b>
                     </div>
                 </div>

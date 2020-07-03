@@ -32,7 +32,7 @@ class Konsumen extends MY_Controller
             'username' => $data['user']['username'],
             'no_tlp' => $data['user']['no_tlp'],
             'data' => $this->modkonsumen->get_konsumen($id),
-            'items' => $this->modkonsumen->get_pesanan($id),
+            'items' => $this->modkonsumen->data_pesanan($id),
             'tanggal' => $this->modkonsumen->get_tanggal($id),
             'total' => $this->modkonsumen->get_total($id),
             'kode' => $id,
@@ -60,10 +60,11 @@ class Konsumen extends MY_Controller
             'tanggal' => $this->modkonsumen->get_tanggal($no_seri),
             'total' => $this->modkonsumen->get_total($no_seri),
             'kode' => $no_seri,
-            'no_tlp' => $id
+            'no_tlp' => $id,
+            'status_pesanan' => $this->modkonsumen->status_pesanan($no_seri)
         );
 
-        // var_dump($data['items']);
+        // var_dump($data['status_pesanan']);
         // die();
 
         $this->template->front('front/status_pesanan', $data);
@@ -101,7 +102,8 @@ class Konsumen extends MY_Controller
             'data' => $this->modkonsumen->get_konsumen($id),
             'items' => $this->modkonsumen->get_pesanan($id),
             'tanggal' => $this->modkonsumen->get_tanggal($id),
-            'total' => $this->modkonsumen->get_total($id)
+            'total' => $this->modkonsumen->get_total($id),
+            'status_pesanan' => $this->modkonsumen->status_pesanan($id)
         );
 
         // var_dump($data['items']);

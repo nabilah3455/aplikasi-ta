@@ -5,7 +5,7 @@
     }
 
     .sub1 {
-        font-size: 14px;
+        font-size: 14.5px;
         font-family: 'Times New Roman', Times, serif;
     }
 
@@ -41,8 +41,8 @@
                 <div class="kop_nota">
                     <table width="100%">
                         <tr>
-                            <td rowspan="2" width="30%"><img src="<?= base_url('assets/images/media/laundry.png')?>" alt="" width="140" height="80"></td>
-                            <td class="sub1"><b>LAUNDRY & DRY CLEAN CLEANING SERVICE</b></td>
+                            <td rowspan="2" width="30%"></td>
+                            <td class="sub1"> <b>LAUNDRY & DRY CLEAN CLEANING SERVICE</b></td>
                         </tr>
                         <tr>
                             <td>
@@ -75,7 +75,10 @@
                         <tr>
                             <td style="padding-left: 4px;">Alamat</td>
                             <td>:</td>
-                            <td colspan="4"><?= $i['alamat'] ?></td>
+                            <td><?= $i['alamat'] ?></td>
+                            <td>Pembayaran</td>
+                            <td>:</td>
+                            <td><b><?= $i['status_bayar'] ?></b></td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -92,6 +95,7 @@
                         <td width=2%>No</td>
                         <td>Jenis Barang</td>
                         <td width="15%">Jumlah</td>
+                        <td width="15%">Berat</td>
                         <td>Total Harga</td>
                     </tr>
                     <?php $a = 1;
@@ -100,6 +104,7 @@
                             <td align="center"><?php echo $a; ?></td>
                             <td><?= $i['nama_barang'] ?></td>
                             <td align="center"><?= $i['jml_barang'] ?></td>
+                            <td align="center"><?= $i['berat'] ?> Kg</td>
                             <td align="right">Rp. <?= $i['total'] ?></td>
                         </tr>
                     <?php $a++;
@@ -108,15 +113,28 @@
                         <?php foreach ($total as $t) { ?>
                             <td colspan="2">TOTAL</td>
                             <td><?= $t['jml'] ?></td>
+                            <td><?= $t['berat'] ?> Kg</td>
                             <td>Rp. <?= $t['jumlah'] ?></td>
                         <?php } ?>
                     </tr>
                 </table>
-                <div class="ttd" style="font-size:15px; padding-top: 1rem;">
-                    <b>Hormat Kami,</b><br>
+                <div class="" style="font-size:15px; padding-top: 1rem;">
+                    <div class="row col-lg-12">
+                        <div class="col">
+                            <?php foreach ($status_pesanan as $i) {
+                                if ($i['status_pesanan'] == '6') {
+                                    echo "<b>Catatan :</b> Pesanan Dibatalkan";
+                                }
+                            } ?>
+                            <div class="ttd">
+                                <b>Hormat Kami,</b>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>

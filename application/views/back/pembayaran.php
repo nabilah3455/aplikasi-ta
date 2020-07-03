@@ -119,9 +119,10 @@
                     </label>
                     <h4>
                         <label style="padding-top: 1.2rem; text-decoration: underline; font-size: 35px;">
-                            {harga}
-                            Rp. {jumlah}
-                            {/harga}
+                            <?php foreach($harga as $h){
+                                $i= number_format($h['jumlah'],0,",",".");
+                                echo "Rp " . $i;
+                            }?>
                         </label>
                         </b></h3>
                 </center>
@@ -146,7 +147,7 @@
                     </div>
                 </form>
                 <?php }else{?>
-                    Status Pesanan : <?= $p['status_bayar']?>
+                    Status Pembayaran : <?= $p['status_bayar']?>
                 <?php } }?>
             </div>
         </div>

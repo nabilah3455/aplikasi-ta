@@ -41,12 +41,11 @@
                 <div class="kop_nota">
                     <table width="100%">
                         <tr>
-                            <td rowspan="2" width="30%">LOGO</td>
-                            <td class="sub1">PRIMA LESTARI</td>
+                            <td rowspan="2" width="30%"></td>
+                            <td class="sub1"> LAUNDRY & DRY CLEAN CLEANING SERVICE</td>
                         </tr>
                         <tr>
                             <td>
-                                LAUNDRY & DRY CLEAN CLEANING SERVICE<br>
                                 Puri Bukit Depok Jl. Menteng III Rt. 04 Rw. 10 No. 18<br>
                                 Hp. 0878 8135 6214<br>
                                 <b>WA : 0857 1032 9617 NPWP. 25.687.980.0-403.000</b><br>
@@ -119,8 +118,19 @@
                         <?php } ?>
                     </tr>
                 </table>
-                <div class="ttd" style="font-size:15px; padding-top: 1rem;">
-                    <b>Hormat Kami,</b><br>
+                <div class="" style="font-size:15px; padding-top: 1rem;">
+                    <div class="row col-lg-12">
+                        <div class="col">
+                            <?php foreach ($status_pesanan as $i) {
+                                if ($i['status_pesanan'] == '6') {
+                                    echo "<b>Catatan :</b> Pesanan Dibatalkan";
+                                }
+                            } ?>
+                            <div class="ttd">
+                                <b>Hormat Kami,</b>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

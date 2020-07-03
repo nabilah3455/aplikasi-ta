@@ -196,7 +196,7 @@ class Pesanan extends MY_Controller
             'status_bayar' => $this->modpesanan->status_bayar($id), 
         );
 
-        // var_dump($data['seri']);
+        // var_dump($data['harga']);
         // die();
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menambahkan Pesanan Baru. Pesanan akan masuk ke dalah daftar antrian</div>');
         $this->template->back('back/pembayaran', $data);
@@ -247,7 +247,8 @@ class Pesanan extends MY_Controller
             'data' => $this->modkonsumen->get_konsumen($id),
             'items' => $this->modkonsumen->get_pesanan($id),
             'tanggal' => $this->modkonsumen->get_tanggal($id),
-            'total' => $this->modkonsumen->get_total($id)
+            'total' => $this->modkonsumen->get_total($id),
+            'status_pesanan' => $this->modkonsumen->status_pesanan($id)
         );
         //  var_dump($data['items']);
         //  die();
